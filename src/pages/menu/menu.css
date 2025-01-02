@@ -1,0 +1,120 @@
+.prev-next-btn{
+   font-size: 17px;
+   padding: 12px;
+   border-radius: 50%;
+   border: none;
+   color: var(--main-color);
+   background-color: #ffffff;
+   transition: all 0.3s;
+   cursor: pointer;
+   margin: 10px 15px;
+}
+.prev-next-btn:hover{
+   color: #ffffff;
+   background-color: var(--main-color);
+}
+.page-number{
+   color: #979797;
+}
+.movies-title-area, .topRated-title-area{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   padding: 10px;
+   border-bottom: 4px solid var(--main-color);
+   margin-bottom: 20px;
+}
+.topRated-title-area{
+   justify-content: start;
+}
+.movies-title{
+   font-size: 25px;
+}
+.movies-list, .movies-area{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.movie{
+   width: 250px;
+   margin: 10px;
+   border-radius: 10px;
+   box-shadow: 0px 2px 15px #1a1a1a;
+   background-color: #000000;
+   transition: all 0.5s;
+   overflow: hidden;
+   cursor: pointer;
+   color: #ffffff;
+}
+.movie:hover .movie-poster img{
+   width: inherit;
+   height: auto;
+   opacity: 0.5;
+   transform: scale(1.10);
+}
+.movie:hover{
+   box-shadow: 0px 2px 15px #333333;
+}
+.movie-top{
+   position: relative;
+   overflow: hidden;
+}
+.movie-poster, .movie-poster img{
+   width: 250px;
+   height: auto;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   object-fit: cover;
+   opacity: 1;
+   transition: all 0.5s;
+}
+.rating-area{
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   padding: 10px;
+   background: linear-gradient(#00000012, #000000 90%);
+}
+.rating-area span{
+   font-size: 14px;
+   color: #ededed;
+   margin-bottom: 5px;
+}
+.star{
+   font-size: 20px;
+   color: #bed307;
+}
+.movie-overview {
+   font-size: 13px;
+   margin: 6px 0;
+   padding-bottom: 4px;
+   color: #ffffff;
+}
+.readmore-btn{
+   font-size: 15px;
+   padding: 5px;
+   background-color: var(--main-color);
+   border: none;
+   border-radius: 6px;
+   width: 100%;
+   cursor: pointer;
+}
+.movie:hover .movie-overview{
+   opacity: 1;
+   margin-bottom: 0;
+}
+.movie:hover .readmore-btn{
+   opacity: 1;
+   margin-bottom: 0;
+}
+.movie-overview, .readmore-btn{
+   opacity: 0;
+   margin-bottom: -100px;
+   transition: all 0.5s;
+}
+.movie-title{
+   font-size: 16px;
+   margin-bottom: 3px;
+}
