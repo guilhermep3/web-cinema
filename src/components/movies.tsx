@@ -28,7 +28,6 @@ export const Movies = () => {
       navigate('/readmore', { state: { movie } })
    }
 
-
    return (
       <div className="movies-area">
          <div className="movies-title-area">
@@ -38,7 +37,6 @@ export const Movies = () => {
          <div className="movies-list">
             {movies?.map((movie) => (
                <div key={movie.id} className="movie" onClick={() => handleNavReadMore(movie)}>
-                  <div className="movie-top">
                      <div className="movie-poster">
                         <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
                      </div>
@@ -49,7 +47,6 @@ export const Movies = () => {
                         <p className="movie-overview">{movie.overview ? movie.overview.substring(0, 110) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
                         <button className="readmore-btn">Ver mais</button>
                      </div>
-                  </div>
                </div>
             ))}
          </div>

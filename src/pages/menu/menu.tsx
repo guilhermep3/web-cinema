@@ -1,6 +1,6 @@
 import { Header } from "@/components/header";
 import { Movies } from "@/components/movies";
-import { PopularMovies } from "@/components/popularmovies";
+import { TopRatedMovies } from "@/components/toprated";
 
 export const Menu = () => {
 
@@ -11,8 +11,8 @@ export const Menu = () => {
             <section>
                <h1>Fazer slide</h1>
             </section>
-            <section className="most-popular-section">
-               <PopularMovies/>
+            <section className="TopRated-section">
+               <TopRatedMovies/>
             </section>
             <section className="all-movies-section">
                <Movies/>
