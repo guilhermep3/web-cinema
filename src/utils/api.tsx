@@ -41,5 +41,5 @@ export const useMovieDetails = (movieId: number) => useQuery({
 })
 export const useTopRatedMovies = () => useQuery({
    queryKey: ['toprated'],
-   queryFn: GetTopRatedMovies
+   queryFn: () => GetTopRatedMovies()
 })

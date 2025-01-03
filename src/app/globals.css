@@ -47,7 +47,7 @@ section{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 50px;
+  padding: 40px 50px;
 }
 header{
   display: flex;

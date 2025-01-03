@@ -44,7 +44,7 @@ export const Movies = () => {
                         <h2 className="movie-title">{movie.title}</h2>
                         <span>({movie.release_date.substring(0, 4)})</span>
                         <StarsRating rating={movie.vote_average} />
-                        <p className="movie-overview">{movie.overview ? movie.overview.substring(0, 110) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
+                        <p className="movie-overview">{movie.overview ? movie.overview.substring(0, 90) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
                         <button className="readmore-btn">Ver mais</button>
                      </div>
                </div>
