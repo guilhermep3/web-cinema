@@ -17,7 +17,7 @@
    backdrop-filter: blur(10px);
    z-index: 1;
 }
-.readmore-infos, .hero-slide-left, .hero-slide-right {
+.readmore-infos {
    position: relative;
    z-index: 2;
    display: flex;
@@ -50,7 +50,7 @@
    color: #ededed;
    font-size: 15px;
 }
-.readmore-adult{
+.readmore-adult, .hero-debut{
    margin: 8px 0;
    padding: 6px 12px;
    border-radius: 8px;
@@ -73,7 +73,7 @@
    font-weight: bold;
    cursor: pointer;
    position: relative;
-   z-index: 1;
+   z-index: 2;
    overflow: hidden;
 }
 .watchBtn:hover {

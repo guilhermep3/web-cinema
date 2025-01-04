@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import "@/pages/readmore/readmore.css"
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
+import { FaClock } from "react-icons/fa";
 
 export const ReadMore = () => {
    const location = useLocation();
@@ -33,9 +34,9 @@ export const ReadMore = () => {
                      <span>|</span>
                      <p className="readmore-adult">{movie.adult ? '+18' : 'Livre'}</p>
                      <span>|</span>
-                     <p className="readmore-runtime">{convertMinHours(data?.runtime)}</p>
+                     <p className="readmore-runtime"><FaClock className="icon-details"/> {convertMinHours(data?.runtime)}</p>
                      <span>|</span>
-                     <p>{movie.vote_average} <FaStar style={{color: '#bed307'}}/></p>
+                     <p><FaStar className="icon-details" style={{color: '#bed307'}}/> {movie.vote_average.toString().slice(0, 3)}</p>
                   </div>
                   <p className="readmore-overview">{movie.overview}</p>
                   <div className="buttons-area">

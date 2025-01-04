@@ -4,11 +4,12 @@ import { Movies } from "@/components/movies";
 import { TopRatedMovies } from "@/components/toprated";
 
 export const Menu = () => {
+// style={{marginTop: '80px'}}
 
    return (
       <div>
          <Header/>
-         <main style={{marginTop: '80px'}}>
+         <main>
             <HeroSlide/>
             <section className="TopRated-section">
                <TopRatedMovies/>

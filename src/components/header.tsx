@@ -5,6 +5,14 @@ import { useNavigate } from "react-router-dom";
 export const Header = () => {
    const navigate = useNavigate()
 
+   window.addEventListener('scroll', () => {
+      if(window.scrollY > 1){
+         document.querySelector('.header')?.classList.add('headerBG')
+      } else {
+         document.querySelector('.header')?.classList.remove('headerBG')
+      }
+   })
+
    function handleInputClass(){
       document.querySelector('.search')?.classList.toggle('showSearch');
       document.querySelector('.search-area')?.classList.toggle('search-area-border');
@@ -15,7 +23,7 @@ export const Header = () => {
    }
 
    return (
-      <header>
+      <header className="header">
          <div className="logo" onClick={handleGoMenu}>
             MOVIES<span>API</span>
          </div>
