@@ -12,7 +12,7 @@ export const TopRatedMovies = () => {
    const [leftMargin, setLeftMargin] = useState(0);
    const [currentSlide, setCurrentSlide] = useState(0);
    const totalSlides = 20;
-   const slideWidth = 270;
+   const slideWidth = 271;
    const itemsPerPage = 4;
 
 
@@ -22,6 +22,9 @@ export const TopRatedMovies = () => {
 
    function handleNavReadMore(movie: MovieType) {
       navigate('/readmore', { state: { movie } })
+   }
+   function handleNavAllTopRated(){
+      navigate('/alltoprated')
    }
 
    function handlePrevSlide() {
@@ -45,6 +48,7 @@ export const TopRatedMovies = () => {
       <>
          <div className="topRated-title-area">
             <h1>Os mais bem avaliados</h1>
+            <button onClick={handleNavAllTopRated}>Ver todos</button>
          </div>
          <div className="topRated-container">
             <div className="topRated-slide-btn-area">

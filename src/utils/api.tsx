@@ -10,7 +10,7 @@ export const GetMovies = async (page: number) => {
          page: page
       }
    });
-   return response.data
+   return response.data;
 }
 export const GetMovieDetail = async (movieId: number) => {
    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
@@ -18,7 +18,7 @@ export const GetMovieDetail = async (movieId: number) => {
          api_key: API_KEY
       }
    })
-   return response.data
+   return response.data;
 }
 export const GetTopRatedMovies = async () => {
    const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
@@ -27,6 +27,15 @@ export const GetTopRatedMovies = async () => {
          language: 'pt-BR'
       }
    })
+   return response.data;
+}
+export const GetSlideMovies = async () => {
+   const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing`, {
+      params: {
+         api_key: API_KEY,
+         language: 'pt-BR'
+      }
+   });
    return response.data
 }
 
@@ -41,5 +50,9 @@ export const useMovieDetails = (movieId: number) => useQuery({
 })
 export const useTopRatedMovies = () => useQuery({
    queryKey: ['toprated'],
-   queryFn: () => GetTopRatedMovies()
+   queryFn: GetTopRatedMovies
+})
+export const useSlideMovies = () => useQuery({
+   queryKey: ['slideMovies'],
+   queryFn: GetSlideMovies
 })

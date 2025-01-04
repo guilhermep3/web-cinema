@@ -22,7 +22,7 @@ export const Header = () => {
          <nav>
             <ul>
                <li><a href="">Início</a></li>
-               <li><a href="">Popular</a></li>
+               <li><a href="">Melhores</a></li>
                <li><a href="">Todos</a></li>
             </ul>
             <div className="search-area">

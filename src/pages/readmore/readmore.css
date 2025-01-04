@@ -17,7 +17,7 @@
    backdrop-filter: blur(10px);
    z-index: 1;
 }
-.readmore-infos {
+.readmore-infos, .hero-slide-left, .hero-slide-right {
    position: relative;
    z-index: 2;
    display: flex;
