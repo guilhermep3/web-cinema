@@ -15,7 +15,8 @@ export const GetMovies = async (page: number) => {
 export const GetMovieDetail = async (movieId: number) => {
    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
       params: {
-         api_key: API_KEY
+         api_key: API_KEY,
+         language: 'pt-BR'
       }
    })
    return response.data;

@@ -5,6 +5,7 @@ export type MovieType = {
    title: string,
    release_date: string,
    poster_path: string,
-   backdrop_path: string
-   vote_average: number
+   backdrop_path: string,
+   vote_average: number,
+   budget: number,
 }

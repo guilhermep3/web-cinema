@@ -1,5 +1,5 @@
 import { MovieType } from "@/types/MovieType";
-import { useSlideMovies } from "@/utils/api";
+import { useMovieDetails, useSlideMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { FaStar, FaCalendar, FaInfoCircle } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -22,43 +22,48 @@ export const HeroSlide = () => {
       navigate('/readmore', { state: { movie } })
    }
 
-   function handlePrevSlide(){
+   function handlePrevSlide() {
       setCurrentSlide((prev) => {
-         const newSlide = prev <= 0 ? totalSlides -1 : prev -1;
+         const newSlide = prev <= 0 ? totalSlides - 1 : prev - 1;
          updateMargin(newSlide)
          updateMargin(newSlide)
          return newSlide;
       })
-      console.log("prev: "+currentSlide)
    }
-   function handleNextSlide(){
+   function handleNextSlide() {
       setCurrentSlide((prev) => {
-         const newSlide = prev >= totalSlides -1 ? 0 : prev + 1;
+         const newSlide = prev >= totalSlides - 1 ? 0 : prev + 1;
          updateMargin(newSlide)
          return newSlide;
       })
-      console.log("next: "+currentSlide)
    }
-   function updateMargin(newSlide: number){
+   function updateMargin(newSlide: number) {
       setNewMargin(newSlide * window.innerWidth);
    }
-   function handlesetSlide(index: number){
+   function handlesetSlide(index: number) {
       setCurrentSlide(index);
       updateMargin(index);
    }
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         handleNextSlide()
+      }, 7000)
+      return () => clearInterval(interval)
+   }, [totalSlides])
 
    return (
       <div className="hero-slider">
          <div className="hero-slide-btn-area">
             <button className="hero-slide-btn" onClick={handlePrevSlide}><FaArrowLeftLong /></button>
-            {Array.from({length: totalSlides}).map((i, index) => (
+            {Array.from({ length: totalSlides }).map((i, index) => (
                <span key={index} className={index === currentSlide ? 'slider-active' : ''} onClick={() => handlesetSlide(index)}>
                   {index + 1}
                </span>
             ))}
             <button className="hero-slide-btn" onClick={handleNextSlide}><FaArrowRightLong /></button>
          </div>
-         <div className="hero-slider-area" style={{marginLeft: `-${newMargin}px`}}>
+         <div className="hero-slider-area" style={{ marginLeft: `-${newMargin}px` }}>
             <div className="hero-overlay">
             </div>
             {movies?.map((movie) => (
@@ -72,12 +77,12 @@ export const HeroSlide = () => {
                         <span>|</span>
                         <p className="hero-debut"><MdLocalMovies className="icon-details" />Estreia</p>
                         <span>|</span>
-                        <FaInfoCircle className="icon-moreinfos" onClick={() => handleNavReadMore(movie)}/>
+                        <FaInfoCircle className="icon-moreinfos" onClick={() => handleNavReadMore(movie)} title="Ver mais informações" />
                      </div>
+                     <p className="hero-overview">{movie.overview}</p>
                      <button className="watchBtn">ASSISTIR</button>
                   </div>
                   <div className="hero-slide-right">
-
                   </div>
                </div>
             ))}

@@ -16,7 +16,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   background: #00000015;
+   background: #00000021;
    z-index: 1;
 }
 .hero-slide-btn-area{
@@ -64,11 +64,24 @@
 .hero-slide{
    position: relative;
    background-position: center;
-   background-size: cover;
+   background-size: 100%;
+   background-repeat: no-repeat;
    display: flex;
    width: 100vw;
    height: 100vh;
    object-fit: cover;
+   animation: zoomSlide 14s infinite linear;
+}
+@keyframes zoomSlide {
+   0%{
+      background-size: 100%;
+   }
+   50%{
+      background-size: 110%;
+   }
+   100%{
+      background-size: 100%;
+   }
 }
 .hero-slide-infos{
    display: flex;
@@ -85,11 +98,15 @@
    position: relative;
    z-index: 2;
    color: #ffffff;
-   padding: 100px 70px;
+   padding: 70px;
 }
 .hero-slide-left{
    background: linear-gradient(270deg, #00000004, #000000ef 90%);
    z-index: 5;
+}
+.hero-overview{
+   font-size: 15px;
+   margin-bottom: 12px;
 }
 .watchBtn {
    width: 130px;
@@ -131,6 +148,10 @@
    text-transform: uppercase;
    font-size: 55px;
    margin-bottom: 5px;
+}
+.icon-moreinfos{
+   font-size: 20px;
+   cursor: pointer;
 }
 .hero-slide-right{
    justify-content: end;

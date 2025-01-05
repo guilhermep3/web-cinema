@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import "@/pages/readmore/readmore.css"
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
-import { FaClock } from "react-icons/fa";
+import { FaClock, FaCalendar } from "react-icons/fa";
 
 export const ReadMore = () => {
    const location = useLocation();
@@ -30,7 +30,9 @@ export const ReadMore = () => {
                <div className="readmore-info-left">
                   <h1>{movie.title}</h1>
                   <div className="readmore-details">
-                     <p className="readmore-release">{movie.release_date}</p>
+                     <p>{data?.genres[0].name} e {data?.genres[1].name}</p>
+                     <span>|</span>
+                     <p className="readmore-release"><FaCalendar className="icon-details"/>{movie.release_date}</p>
                      <span>|</span>
                      <p className="readmore-adult">{movie.adult ? '+18' : 'Livre'}</p>
                      <span>|</span>

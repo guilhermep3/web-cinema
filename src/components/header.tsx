@@ -29,9 +29,9 @@ export const Header = () => {
          </div>
          <nav>
             <ul>
-               <li><a href="">Início</a></li>
-               <li><a href="">Melhores</a></li>
-               <li><a href="">Todos</a></li>
+               <li><a href="#">Início</a></li>
+               <li><a href="#topRated">Melhores</a></li>
+               <li><a href="#allMovies">Todos</a></li>
             </ul>
             <div className="search-area">
                <FaSearch className="search-lupe" onClick={handleInputClass}/>
