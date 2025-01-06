@@ -7,7 +7,7 @@ import { MoviesList } from "@/components/movieslist";
 import "@/pages/search/search.css"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-export const Search = () => {
+const Search = () => {
    const [searchParams] = useSearchParams();
    const query = searchParams.get('q') as string;
    const [movies, setMovies] = useState<MovieType[]>([]);
@@ -42,3 +42,4 @@ export const Search = () => {
       </section>
    )
 }
+export default Search

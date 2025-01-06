@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa6";
 import { FaClock, FaCalendar } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-export const ReadMore = () => {
+const ReadMore = () => {
    const location = useLocation();
    const { movie } = location.state;
    const { data } = useMovieDetails(movie.id);
@@ -65,3 +65,4 @@ export const ReadMore = () => {
       </div>
    )
 }
+export default ReadMore

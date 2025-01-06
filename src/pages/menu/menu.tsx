@@ -9,7 +9,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import "@/pages/menu/menu.css"
 import { Footer } from "@/components/footer";
 
-export const Menu = () => {
+const Menu = () => {
    const [movies, setMovies] = useState<MovieType[]>([]);
    const [page, setPage] = useState(1);
    const { data } = useMovies(page);
@@ -49,3 +49,4 @@ export const Menu = () => {
       </div>
    )
 }
+export default Menu
