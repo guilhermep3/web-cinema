@@ -1,37 +1,26 @@
-## Projeto em andamento
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movies Api - Cinema
+Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir informações sobre filmes, Inclui slides e paginação.
 
-## Getting Started
+<img src="https://github.com/user-attachments/assets/f60c7ae8-f476-4b3c-834b-8d6964ac9568" alt="Movies API - Cinema"/>
+## Bibliotecas utilizadas:
 
-First, run the development server:
+- `Tanstack React Query` - (ajuda nas requisições da api)
+- `Axios` - (facilita as requisições)
+- `React Router Dom` - (gerenciar rotas)
+- `React Icons` - (importa ícones)
 
+### Para iniciar
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- npm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Para rodar
+```bash
+- npm run dev
+```
+<div>
+  <h2>Tecnologias utilizadas</h2>
+  <img width="40" height="40" src="https://www.svgrepo.com/show/452092/react.svg"/>
+  <img width="40" height="40" src="https://www.svgrepo.com/show/374146/typescript-official.svg"/>
+  <img width="40" height="40" src="https://www.svgrepo.com/show/452185/css-3.svg"/>
+</div>
+<p>Projeto feito por <a href="https://github.com/guilhermep3">Guilherme Pereira</a></p>
