@@ -7,6 +7,7 @@ import { useMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import "@/pages/menu/menu.css"
+import { Footer } from "@/components/footer";
 
 export const Menu = () => {
    const [movies, setMovies] = useState<MovieType[]>([]);
@@ -44,6 +45,7 @@ export const Menu = () => {
                </div>
             </section>
          </main>
+         <Footer/>
       </div>
    )
 }

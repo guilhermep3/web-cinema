@@ -22,6 +22,7 @@
    z-index: 2;
    display: flex;
    color: #ffffff;
+   width: 100%;
 }
 .readmore-info-left{
    flex: 1;
@@ -33,12 +34,16 @@
 }
 .readmore-info-left h1{
    font-size: 44px;
+   font-family: "Orbitron", serif;
 }
 .readmore-info-left p{
    font-size: 17px;
 }
 .readmore-info-right{
    flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .readmore-poster{
    width: 350px;

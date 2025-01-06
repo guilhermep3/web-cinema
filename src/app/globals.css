@@ -15,7 +15,7 @@
 }
 html{
   scroll-behavior: smooth;
-  scroll-margin-top: 90px;
+  scroll-padding-top: 50px;
 }
 html,
 body {
@@ -145,6 +145,7 @@ header li a:hover::after{
   width: 0;
   color: #ffffff;
   transition: all 0.1s;
+  margin-bottom: -2px;
 }
 .search-icon-send:hover{
   color: var(--second-color);
@@ -197,4 +198,16 @@ header li a:hover::after{
 .icon-star{
   font-size: 18px;
   color: var(--second-color);
+}
+footer{
+  padding: 20px 50px;
+  background-color: #14141f;
+}
+footer {
+  font-size: 14px;
+  text-align: center;
+  color: #979797;
+}
+footer a:hover{
+  text-decoration: underline;
 }

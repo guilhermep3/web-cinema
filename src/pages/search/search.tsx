@@ -3,15 +3,16 @@ import { useSearchParams } from "react-router-dom"
 import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
-import { StarsRating } from "@/components/stars";
 import { MoviesList } from "@/components/movieslist";
 import "@/pages/search/search.css"
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export const Search = () => {
    const [searchParams] = useSearchParams();
    const query = searchParams.get('q') as string;
    const [movies, setMovies] = useState<MovieType[]>([]);
-   const {data, isLoading} = useSearchedMovies(query);
+   const [page, setPage] = useState(1)
+   const {data, isLoading} = useSearchedMovies(query, page);
 
    useEffect(() => {
       if(data?.results){
@@ -19,14 +20,25 @@ export const Search = () => {
       }
    }, [data, query])
 
+   function handlePrevBtn() {
+      setPage(page === 1 ? 1 : page - 1)
+   }
+   function handleNextBtn() {
+      setPage(page + 1)
+   }
 
    return (
       <section className="search-section">
          <Header />
-         <h1 className="search-result-title">Resultados para: <span>{query}</span></h1>
-         <h2 className="total-movies">total de {movies.length} filmes</h2>
-         {isLoading && <p>Carregando...</p>}
-         <MoviesList movies={movies}/>
+         <div className="movies-area">
+            <div className="movies-title-area">
+               <h1 className="search-result-title">Resultados para: <span>{query}</span></h1>
+            </div>
+            {isLoading && <p>Carregando...</p>}
+            <MoviesList movies={movies}/>
+            <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
+            <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
+         </div>
       </section>
    )
 }
