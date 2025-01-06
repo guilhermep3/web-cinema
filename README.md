@@ -4,10 +4,10 @@ Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir 
 <img src="https://github.com/user-attachments/assets/f60c7ae8-f476-4b3c-834b-8d6964ac9568" alt="Movies API - Cinema"/>
 ## Bibliotecas utilizadas:
 
-- `Tanstack React Query` - (ajuda nas requisições da api)
-- `Axios` - (facilita as requisições)
-- `React Router Dom` - (gerenciar rotas)
-- `React Icons` - (importa ícones)
+- `Tanstack React Query`: ajuda nas requisições da api
+- `Axios`: facilita as requisições
+- `React Router Dom`: gerenciar rotas
+- `React Icons`: importa ícones
 
 ### Para iniciar
 ```bash
