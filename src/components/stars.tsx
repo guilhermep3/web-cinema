@@ -25,9 +25,9 @@ export const StarsRating = (props: props) => {
 
    return(
       <div>
-         {fullStarsArray.map(i => <FaStar key={i} className="star"/>)}
-         {halfStarsArray.map(i => <FaStarHalfAlt key={i} className="star"/>)}
-         {voidStarsArray.map(i => <FaRegStar key={i} className="star"/>)}
+         {fullStarsArray.map(i => <FaStar key={i} className="icon-star"/>)}
+         {halfStarsArray.map(i => <FaStarHalfAlt key={i} className="icon-star"/>)}
+         {voidStarsArray.map(i => <FaRegStar key={i} className="icon-star"/>)}
       </div>
    )
 }

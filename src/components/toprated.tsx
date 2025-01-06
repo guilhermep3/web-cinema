@@ -48,7 +48,6 @@ export const TopRatedMovies = () => {
       <>
          <div className="topRated-title-area">
             <h1>Os mais bem avaliados</h1>
-            <button onClick={handleNavAllTopRated}>Ver todos</button>
          </div>
          <div className="topRated-container">
             <div className="topRated-slide-btn-area">

@@ -46,11 +46,25 @@ export const HeroSlide = () => {
    }
 
    useEffect(() => {
+      document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
+         heroSlide.classList.add('hero-slide-animation')
+      })
+   })
+
+   useEffect(() => {
       const interval = setInterval(() => {
          handleNextSlide()
+         document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
+            heroSlide.classList.add('hero-slide-animation')
+         })
       }, 7000)
       return () => clearInterval(interval)
-   }, [totalSlides])
+   }, [currentSlide])
+
+   const formateDate = (movieDate: string) => {
+      const date = new Date(movieDate)
+      return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).format(date);
+   }
 
    return (
       <div className="hero-slider">
@@ -71,9 +85,9 @@ export const HeroSlide = () => {
                   <div className="hero-slide-left">
                      <h1>{movie.title}</h1>
                      <div className="hero-slide-infos">
-                        <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details" style={{ color: '#bed307' }} /></p>
+                        <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details icon-star"/></p>
                         <span>|</span>
-                        <p><FaCalendar className="icon-details" /> {movie.release_date}</p>
+                        <p><FaCalendar className="icon-details" /> {formateDate(movie.release_date)}</p>
                         <span>|</span>
                         <p className="hero-debut"><MdLocalMovies className="icon-details" />Estreia</p>
                         <span>|</span>

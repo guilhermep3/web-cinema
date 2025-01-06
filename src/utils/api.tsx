@@ -39,6 +39,16 @@ export const GetSlideMovies = async () => {
    });
    return response.data
 }
+export const GetSearchedMovies = async (query: string) => {
+   const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
+      params: {
+         api_key: API_KEY,
+         language: 'pt-BR',
+         query: query
+      }
+   })
+   return response.data
+}
 
 export const useMovies = (page: number) => useQuery({
    queryKey: ['movies', page],
@@ -56,4 +66,8 @@ export const useTopRatedMovies = () => useQuery({
 export const useSlideMovies = () => useQuery({
    queryKey: ['slideMovies'],
    queryFn: GetSlideMovies
+})
+export const useSearchedMovies = (query: string) => useQuery({
+   queryKey: ['searched',query],
+   queryFn: () => GetSearchedMovies(query)
 })

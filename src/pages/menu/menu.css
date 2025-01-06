@@ -70,7 +70,9 @@
    width: 100vw;
    height: 100vh;
    object-fit: cover;
-   animation: zoomSlide 14s infinite linear;
+}
+.hero-slide-animation{
+   animation: zoomSlide 14s infinite linear
 }
 @keyframes zoomSlide {
    0%{
@@ -228,10 +230,6 @@
 .movie-title, .topRated-title{
    font-size: 16px;
    margin-bottom: 3px;
-}
-.star{
-   font-size: 20px;
-   color: #bed307;
 }
 .movie-overview, .topRated-overview{
    font-size: 13px;

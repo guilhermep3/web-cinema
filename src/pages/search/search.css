@@ -1,0 +1,14 @@
+.search-section{
+   margin-top: 60px;
+}
+.search-result-title{
+   font-size: 25px;
+}
+.search-result-title span {
+   color: var(--main-color);
+}
+.total-movies{
+   font-size: 16px;
+   margin: 10px;
+   color: #979797;
+}

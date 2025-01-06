@@ -1,9 +1,12 @@
 "use client"
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { IoIosSend } from "react-icons/io";
 
 export const Header = () => {
-   const navigate = useNavigate()
+   const navigate = useNavigate();
+   const [search, setSearch] = useState<string>();
 
    window.addEventListener('scroll', () => {
       if(window.scrollY > 1){
@@ -16,10 +19,21 @@ export const Header = () => {
    function handleInputClass(){
       document.querySelector('.search')?.classList.toggle('showSearch');
       document.querySelector('.search-area')?.classList.toggle('search-area-border');
+      document.querySelector('.search-icon-send')?.classList.toggle('show-icon-send');
+      const search = document.querySelector('.search') as HTMLInputElement;
+      search?.focus()
    }
 
    function handleGoMenu(){
       navigate('/')
+   }
+
+   function handleSendSearch(e: any){
+      e.preventDefault()
+      if(!search) return;
+      navigate(`/search?q=${search}`);
+      setSearch('')
+      console.log(search)
    }
 
    return (
@@ -33,10 +47,13 @@ export const Header = () => {
                <li><a href="#topRated">Melhores</a></li>
                <li><a href="#allMovies">Todos</a></li>
             </ul>
-            <div className="search-area">
-               <FaSearch className="search-lupe" onClick={handleInputClass}/>
-               <input type="search" className="search" placeholder="pesquisar..." />
-            </div>
+            <form className="search-area" onSubmit={(e) => handleSendSearch(e)}>
+               <FaSearch className="search-icon-lupe" onClick={handleInputClass}/>
+               <input type="search" className="search" onChange={(e) => setSearch(e.target.value)} placeholder="pesquisar..." />
+               <button type="submit">
+                  <IoIosSend className="search-icon-send"/>
+               </button>
+            </form>
          </nav>
          <button className="login">Login</button>
       </header>
