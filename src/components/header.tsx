@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
@@ -8,20 +8,26 @@ export const Header = () => {
    const navigate = useNavigate();
    const [search, setSearch] = useState<string>();
 
-   window.addEventListener('scroll', () => {
-      if(window.scrollY > 1){
-         document.querySelector('.header')?.classList.add('headerBG')
-      } else {
-         document.querySelector('.header')?.classList.remove('headerBG')
-      }
+   useEffect(() => {
+      window.addEventListener('scroll', () => {
+         if (typeof document !== 'undefined'){
+            if(window.scrollY > 1){
+               document.querySelector('.header')?.classList.add('headerBG')
+            } else {
+               document.querySelector('.header')?.classList.remove('headerBG')
+            }
+         }
+      })
    })
 
    function handleInputClass(){
-      document.querySelector('.search')?.classList.toggle('showSearch');
-      document.querySelector('.search-area')?.classList.toggle('search-area-border');
-      document.querySelector('.search-icon-send')?.classList.toggle('show-icon-send');
-      const search = document.querySelector('.search') as HTMLInputElement;
-      search?.focus()
+      if (typeof document !== 'undefined'){
+         document.querySelector('.search')?.classList.toggle('showSearch');
+         document.querySelector('.search-area')?.classList.toggle('search-area-border');
+         document.querySelector('.search-icon-send')?.classList.toggle('show-icon-send');
+         const search = document.querySelector('.search') as HTMLInputElement;
+         search?.focus()
+      }
    }
 
    function handleGoMenu(){

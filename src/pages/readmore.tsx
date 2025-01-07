@@ -1,11 +1,11 @@
 import { Header } from "@/components/header";
 import { useMovieDetails } from "@/utils/api";
 import { useLocation } from "react-router-dom";
-import "@/pages/readmore/readmore.css"
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 import { FaClock, FaCalendar } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import "@/styles/readmore.css"
 
 const ReadMore = () => {
    const location = useLocation();
@@ -31,6 +31,8 @@ const ReadMore = () => {
    useEffect(() => {
       formateDate()
    }, [movie.release_date])
+
+   if(data.isLoading) return <p>Carregando...</p>
 
    return (
       <div>

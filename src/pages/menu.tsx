@@ -1,3 +1,4 @@
+"use client"
 import { Header } from "@/components/header";
 import { HeroSlide } from "@/components/heroslide";
 import { MoviesList } from "@/components/movieslist";
@@ -6,7 +7,7 @@ import { MovieType } from "@/types/MovieType";
 import { useMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import "@/pages/menu/menu.css"
+import "@/styles/menu.css"
 import { Footer } from "@/components/footer";
 
 const Menu = () => {

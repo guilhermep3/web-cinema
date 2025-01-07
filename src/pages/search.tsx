@@ -4,7 +4,7 @@ import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
 import { MoviesList } from "@/components/movieslist";
-import "@/pages/search/search.css"
+import "@/styles/search.css"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Search = () => {

@@ -1,5 +1,5 @@
 import { MovieType } from "@/types/MovieType";
-import { useMovieDetails, useSlideMovies } from "@/utils/api";
+import { useSlideMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { FaStar, FaCalendar, FaInfoCircle } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -26,7 +26,6 @@ export const HeroSlide = () => {
       setCurrentSlide((prev) => {
          const newSlide = prev <= 0 ? totalSlides - 1 : prev - 1;
          updateMargin(newSlide)
-         updateMargin(newSlide)
          return newSlide;
       })
    }
@@ -38,7 +37,9 @@ export const HeroSlide = () => {
       })
    }
    function updateMargin(newSlide: number) {
-      setNewMargin(newSlide * window.innerWidth);
+      if(typeof window !== "undefined"){
+         setNewMargin(newSlide * window.innerWidth);
+      }
    }
    function handlesetSlide(index: number) {
       setCurrentSlide(index);
@@ -46,19 +47,23 @@ export const HeroSlide = () => {
    }
 
    useEffect(() => {
-      document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
-         heroSlide.classList.add('hero-slide-animation')
-      })
-   })
-
-   useEffect(() => {
-      const interval = setInterval(() => {
-         handleNextSlide()
+      if (typeof document !== 'undefined'){
          document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
             heroSlide.classList.add('hero-slide-animation')
          })
-      }, 7000)
-      return () => clearInterval(interval)
+      }
+   })
+
+   useEffect(() => {
+      if (typeof document !== 'undefined'){
+         const interval = setInterval(() => {
+            handleNextSlide()
+            document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
+               heroSlide.classList.add('hero-slide-animation')
+            })
+         }, 7000)
+         return () => clearInterval(interval)
+      }
    }, [currentSlide])
 
    const formateDate = (movieDate: string) => {
