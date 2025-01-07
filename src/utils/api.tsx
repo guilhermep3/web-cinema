@@ -21,6 +21,15 @@ export const GetMovieDetail = async (movieId: number) => {
    })
    return response.data;
 }
+export const GetReleaseDates = async (movieId: number) => {
+   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`,{
+      params: {
+         api_key: API_KEY,
+         language: 'pt-BR'
+      }
+   });
+   return response.data;
+}
 export const GetTopRatedMovies = async () => {
    const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
       params: {
@@ -59,6 +68,10 @@ export const useMovies = (page: number) => useQuery({
 export const useMovieDetails = (movieId: number) => useQuery({
    queryKey: ['movieDetails',movieId],
    queryFn: () => GetMovieDetail(movieId)
+})
+export const useReleaseDates = (movieId: number) => useQuery({
+   queryKey: ['releaseDates', movieId],
+   queryFn: () => GetReleaseDates(movieId)
 })
 export const useTopRatedMovies = () => useQuery({
    queryKey: ['toprated'],

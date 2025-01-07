@@ -39,7 +39,6 @@ export const Header = () => {
       if(!search) return;
       navigate(`/search?q=${search}`);
       setSearch('')
-      console.log(search)
    }
 
    return (

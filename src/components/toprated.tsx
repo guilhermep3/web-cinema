@@ -31,14 +31,12 @@ export const TopRatedMovies = () => {
       const newSlide = (currentSlide - itemsPerPage + totalSlides) % totalSlides;
       setCurrentSlide(newSlide);
       updateMarginSlide(newSlide);
-      console.log('prevSlide: '+newSlide)
    }
    
    function handleNextSlide() {
       const newSlide = (currentSlide + itemsPerPage) % totalSlides;
       setCurrentSlide(newSlide);
       updateMarginSlide(newSlide);
-      console.log('nextSlide: '+newSlide)
    }
    function updateMarginSlide(newSlide: number) {
       setLeftMargin(newSlide * slideWidth);

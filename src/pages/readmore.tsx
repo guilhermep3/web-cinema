@@ -1,5 +1,5 @@
 import { Header } from "@/components/header";
-import { useMovieDetails } from "@/utils/api";
+import { useMovieDetails, useReleaseDates } from "@/utils/api";
 import { useLocation } from "react-router-dom";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
@@ -11,17 +11,26 @@ const ReadMore = () => {
    const location = useLocation();
    const { movie } = location.state;
    const { data } = useMovieDetails(movie.id);
-   const [dateMovie, setDateMovie] = useState<any>()
+   const { data: release } = useReleaseDates(movie.id);
+   const [dateMovie, setDateMovie] = useState<any>();
+   const [certification, setCertification] = useState<number | string>()
 
-   function convertMinHours(minutes: number){
+   function convertMinHours(minutes: number) {
       const hours = Math.floor(minutes / 60);
       const remainingMinutes = minutes % 60;
-      if(remainingMinutes === 0){
-         return `${hours}hrs`
+      if (hours === 0) {
+         return `${remainingMinutes}min`;
+      } else if (remainingMinutes === 0) {
+         return `${hours}hrs`;
       } else {
-         return `${hours}h ${remainingMinutes}min`
+         return `${hours}h ${remainingMinutes}min`;
       }
    }
+
+   useEffect(()=>{
+      const findRelease = release?.results.find((item: { iso_3166_1: string; }) => item.iso_3166_1 === 'BR');
+      setCertification(findRelease?.release_dates[0].certification);
+   }, [release])
 
    const formateDate = () => {
       const date = new Date(movie.release_date)
@@ -32,31 +41,33 @@ const ReadMore = () => {
       formateDate()
    }, [movie.release_date])
 
-   if(data.isLoading) return <p>Carregando...</p>
+   if (data?.isLoading) return <p>Carregando...</p>
 
    return (
       <div>
          <Header />
          <div className="readmore-overlay"></div>
-         <section style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}} className="readmore-section">
+         <section style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }} className="readmore-section">
             <div className="readmore-infos">
                <div className="readmore-info-left">
                   <h1>{movie.title}</h1>
                   <div className="readmore-details">
-                     <p>{data?.genres[0].name} {data?.genres[1] && ` e ${data?.genres[1].name}`}</p>
+                     <p>{data?.genres[0] && `${data?.genres[0].name}`} {data?.genres[1] && ` e ${data?.genres[1].name}`}</p>
                      <span>|</span>
-                     <p className="readmore-release"><FaCalendar className="icon-details" style={{marginRight: '3px'}}/>{dateMovie}</p>
+                     <p className="readmore-release"><FaCalendar className="icon-details" style={{ marginRight: '3px' }} />{dateMovie}</p>
                      <span>|</span>
-                     <p className="readmore-adult">{movie.adult ? '+18' : 'Livre'}</p>
+                     <p className="readmore-adult">
+                        {certification === 'L' ? 'Livre' : certification ? `+${certification}` : 'Livre'}
+                     </p>
                      <span>|</span>
-                     <p className="readmore-runtime"><FaClock className="icon-details"/> {convertMinHours(data?.runtime)}</p>
+                     <p className="readmore-runtime"><FaClock className="icon-details" /> {convertMinHours(data?.runtime)}</p>
                      <span>|</span>
-                     <p><FaStar className="icon-details icon-star"/> {movie.vote_average.toString().slice(0, 3)}</p>
+                     <p><FaStar className="icon-details icon-star" />{movie.vote_average.toString().slice(0, 3)}</p>
                   </div>
                   <p className="readmore-overview">{movie.overview}</p>
                   <div className="buttons-area">
                      <button className="watchBtn">ASSISTIR</button>
-                     <button className="addBtn addBtn-hover"><MdLibraryAdd className="addBtn-icon"/>Adicionar</button>
+                     <button className="addBtn addBtn-hover"><MdLibraryAdd className="addBtn-icon" />Adicionar</button>
                   </div>
                </div>
                <div className="readmore-info-right">
