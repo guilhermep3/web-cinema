@@ -6,8 +6,8 @@ Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir 
 
 - `Tanstack React Query`: ajuda nas requisições da api
 - `Axios`: facilita as requisições
-- `React Router Dom`: gerenciar rotas
 - `React Icons`: importa ícones
+- `Next.js Router e Next.js Navigation`: ferramenta do next para criar e gerenciar rotas e navegações
 
 ### Para iniciar
 ```bash
