@@ -1,10 +1,12 @@
+"use client"
 import { MovieType } from "@/types/MovieType";
 import { useSlideMovies } from "@/utils/api";
+import { useMovieContext } from "@/utils/context";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaStar, FaCalendar, FaInfoCircle } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { MdLocalMovies } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 
 export const HeroSlide = () => {
    const [movies, setMovies] = useState<MovieType[]>();
@@ -12,14 +14,16 @@ export const HeroSlide = () => {
    const [newMargin, setNewMargin] = useState(0);
    let [currentSlide, setCurrentSlide] = useState(0);
    let totalSlides = 5;
-   const navigate = useNavigate()
+   const router = useRouter();
+   const { setSelectedMovie } = useMovieContext();
 
    useEffect(() => {
       setMovies(data?.results.slice(0, 5))
    }, [data])
 
    function handleNavReadMore(movie: MovieType) {
-      navigate('/readmore', { state: { movie } })
+      setSelectedMovie(movie)
+      router.push(`/readmore`)
    }
 
    function handlePrevSlide() {
@@ -37,7 +41,7 @@ export const HeroSlide = () => {
       })
    }
    function updateMargin(newSlide: number) {
-      if(typeof window !== "undefined"){
+      if (typeof window !== "undefined") {
          setNewMargin(newSlide * window.innerWidth);
       }
    }
@@ -47,7 +51,7 @@ export const HeroSlide = () => {
    }
 
    useEffect(() => {
-      if (typeof document !== 'undefined'){
+      if (typeof document !== "undefined") {
          document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
             heroSlide.classList.add('hero-slide-animation')
          })
@@ -55,7 +59,7 @@ export const HeroSlide = () => {
    })
 
    useEffect(() => {
-      if (typeof document !== 'undefined'){
+      if (typeof document !== "undefined") {
          const interval = setInterval(() => {
             handleNextSlide()
             document.querySelectorAll('.hero-slide').forEach((heroSlide) => {
@@ -90,7 +94,7 @@ export const HeroSlide = () => {
                   <div className="hero-slide-left">
                      <h1>{movie.title}</h1>
                      <div className="hero-slide-infos">
-                        <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details icon-star"/></p>
+                        <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details icon-star" /></p>
                         <span>|</span>
                         <p><FaCalendar className="icon-details" /> {formateDate(movie.release_date)}</p>
                         <span>|</span>

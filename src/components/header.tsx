@@ -1,27 +1,29 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 
 export const Header = () => {
-   const navigate = useNavigate();
+   const router = useRouter();
    const [search, setSearch] = useState<string>();
 
-   useEffect(() => {
-      window.addEventListener('scroll', () => {
-         if (typeof document !== 'undefined'){
-            if(window.scrollY > 1){
-               document.querySelector('.header')?.classList.add('headerBG')
-            } else {
-               document.querySelector('.header')?.classList.remove('headerBG')
+      if (typeof window !== "undefined") {
+         const handleScroll = () => {
+            const header = document.querySelector('header')
+            if (typeof document !== "undefined") {
+               if (window.scrollY > 1) {
+                  header?.classList.add('headerBG');
+               } else {
+                  header?.classList.remove('headerBG');
+               }
             }
          }
-      })
-   })
+         window.addEventListener('srcoll', handleScroll);
+      }
 
-   function handleInputClass(){
-      if (typeof document !== 'undefined'){
+   function handleInputClass() {
+      if (typeof document !== "undefined") {
          document.querySelector('.search')?.classList.toggle('showSearch');
          document.querySelector('.search-area')?.classList.toggle('search-area-border');
          document.querySelector('.search-icon-send')?.classList.toggle('show-icon-send');
@@ -30,14 +32,14 @@ export const Header = () => {
       }
    }
 
-   function handleGoMenu(){
-      navigate('/')
+   function handleGoMenu() {
+      router.push('/')
    }
 
-   function handleSendSearch(e: any){
+   function handleSendSearch(e: any) {
       e.preventDefault()
-      if(!search) return;
-      navigate(`/search?q=${search}`);
+      if (!search) return;
+      router.push(`/search?q=${search}`);
       setSearch('')
    }
 
@@ -53,10 +55,10 @@ export const Header = () => {
                <li><a href="#allMovies">Todos</a></li>
             </ul>
             <form className="search-area" onSubmit={(e) => handleSendSearch(e)}>
-               <FaSearch className="search-icon-lupe" onClick={handleInputClass}/>
+               <FaSearch className="search-icon-lupe" onClick={handleInputClass} />
                <input type="search" className="search" onChange={(e) => setSearch(e.target.value)} placeholder="pesquisar..." />
                <button type="submit">
-                  <IoIosSend className="search-icon-send"/>
+                  <IoIosSend className="search-icon-send" />
                </button>
             </form>
          </nav>

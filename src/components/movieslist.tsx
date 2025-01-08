@@ -1,14 +1,19 @@
+"use client"
 import { MovieType } from "@/types/MovieType"
-import { useNavigate } from "react-router-dom"
 import { StarsRating } from "./stars"
+import { useRouter } from "next/navigation"
+import { useMovieContext } from "@/utils/context"
 
 type props = {
    movies: MovieType[]
 }
 export const MoviesList = ({movies}: props) => {
-   const navigate = useNavigate()
+   const router = useRouter()
+      const { setSelectedMovie } = useMovieContext();
+
    function handleNavReadMore(movie: MovieType) {
-      navigate('/readmore', { state: { movie } })
+      setSelectedMovie(movie)
+      router.push('/readmore')
    }
 
    return (

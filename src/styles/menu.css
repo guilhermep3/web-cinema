@@ -27,8 +27,8 @@
    bottom: 0;
    z-index: 3;
    display: flex;
-   justify-content: end;
-   align-items: end;
+   justify-content: flex-end;
+   align-items: flex-end;
    padding: 100px 70px;
 }
 .hero-slide-btn{
@@ -156,7 +156,7 @@
    cursor: pointer;
 }
 .hero-slide-right{
-   justify-content: end;
+   justify-content: flex-;
    align-items: center;
 }
 
@@ -268,7 +268,7 @@
    background-color: #ffffff;
    transition: all 0.3s;
    cursor: pointer;
-   margin: 10px 15px;
+   margin: 8px;
 }
 .prev-next-btn:hover, .topRated-slide-btn:hover{
    color: #ffffff;
@@ -296,10 +296,16 @@
 }
 .topRated-slide-btn-area{
    position: absolute;
-   width: 93vw;
+   width: 100%;
    height: 100%;
    margin: 0 auto;
    display: flex;
    justify-content: space-between;
    align-items: center;
+}
+.hero-debut{
+   margin: 8px 0;
+   padding: 6px 12px;
+   border-radius: 8px;
+   background-color: var(--main-color);
 }

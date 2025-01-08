@@ -1,15 +1,18 @@
+"use client"
 import { Header } from "@/components/header";
-import { useSearchParams } from "react-router-dom"
 import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
 import { MoviesList } from "@/components/movieslist";
 import "@/styles/search.css"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Footer } from "@/components/footer";
+import { useSearchParams } from "next/navigation";
+import React, { Suspense } from "react";
 
-const Search = () => {
-   const [searchParams] = useSearchParams();
-   const query = searchParams.get('q') as string;
+const SearchPage = () => {
+   const searchParams = useSearchParams();
+   const query = searchParams.get('q') as string || '';
    const [movies, setMovies] = useState<MovieType[]>([]);
    const [page, setPage] = useState(1)
    const { data, isLoading } = useSearchedMovies(query, page);
@@ -26,6 +29,7 @@ const Search = () => {
    function handleNextBtn() {
       setPage(page + 1)
    }
+   if(!query) return <p>Nenhum filme foi encontrado.</p>
 
    return (
       <section className="search-section">
@@ -43,7 +47,16 @@ const Search = () => {
                </div>
             }
          </div>
+         <Footer/>
       </section>
+   )
+}
+
+const Search = () => {
+   return (
+      <Suspense fallback={<p>carregando...</p>}>
+         <SearchPage/>
+      </Suspense>
    )
 }
 export default Search

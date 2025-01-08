@@ -1,16 +1,19 @@
+"use client"
 import { MovieType } from "@/types/MovieType";
 import { useEffect, useState } from "react";
 import { StarsRating } from "./stars";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useTopRatedMovies } from "@/utils/api";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import { useMovieContext } from "@/utils/context";
 
 export const TopRatedMovies = () => {
    const { data } = useTopRatedMovies();
    const [movies, setMovies] = useState<MovieType[]>();
-   const navigate = useNavigate();
+   const router = useRouter();
    const [leftMargin, setLeftMargin] = useState(0);
    const [currentSlide, setCurrentSlide] = useState(0);
+   const { setSelectedMovie } = useMovieContext();
    const totalSlides = 20;
    const slideWidth = 271;
    const itemsPerPage = 4;
@@ -21,10 +24,8 @@ export const TopRatedMovies = () => {
    }, [data])
 
    function handleNavReadMore(movie: MovieType) {
-      navigate('/readmore', { state: { movie } })
-   }
-   function handleNavAllTopRated(){
-      navigate('/alltoprated')
+      setSelectedMovie(movie)
+      router.push('/readmore')
    }
 
    function handlePrevSlide() {
