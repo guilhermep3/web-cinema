@@ -103,9 +103,8 @@ export const HeroSlide = () => {
                         <FaInfoCircle className="icon-moreinfos" onClick={() => handleNavReadMore(movie)} title="Ver mais informações" />
                      </div>
                      <p className="hero-overview">{movie.overview}</p>
+                     <p className="hero-overview-mobile">{movie.overview.slice(0, 150)}...</p>
                      <button className="watchBtn">ASSISTIR</button>
-                  </div>
-                  <div className="hero-slide-right">
                   </div>
                </div>
             ))}

@@ -20,3 +20,11 @@
    flex-wrap: wrap;
    flex-direction: column;
 }
+.buttons-area{
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+.buttons-area button{
+   width: 40%;
+}

@@ -45,7 +45,7 @@ export const TopRatedMovies = () => {
 
    return (
       <>
-         <div className="topRated-title-area">
+         <div className="movies-title-area">
             <h1>Os mais bem avaliados</h1>
          </div>
          <div className="topRated-container">
@@ -55,15 +55,15 @@ export const TopRatedMovies = () => {
             </div>
             <div className="topRated-list" style={{ marginLeft: `-${leftMargin}px`}}>
                {movies?.map((movie) => (
-                  <div key={movie.id} className="topRated-movie" onClick={() => handleNavReadMore(movie)}>
-                     <div className="topRated-poster">
+                  <div key={movie.id} className="movie" onClick={() => handleNavReadMore(movie)}>
+                     <div className="movie-poster">
                         <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
                      </div>
-                     <div className="topRated-infos">
-                        <h2 className="topRated-title">{movie.title}</h2>
+                     <div className="movie-infos">
+                        <h2 className="movie-title">{movie.title}</h2>
                         <span>({movie.release_date.substring(0, 4)})</span>
                         <StarsRating rating={movie.vote_average} />
-                        <p className="topRated-overview">{movie.overview ? movie.overview.substring(0, 90) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
+                        <p className="movie-overview">{movie.overview ? movie.overview.substring(0, 90) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
                         <button className="readmore-btn">Ver mais</button>
                      </div>
                   </div>

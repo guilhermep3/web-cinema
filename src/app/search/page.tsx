@@ -9,6 +9,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Footer } from "@/components/footer";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
+import { Loading } from "@/components/loading";
 
 const SearchPage = () => {
    const searchParams = useSearchParams();
@@ -29,7 +30,7 @@ const SearchPage = () => {
    function handleNextBtn() {
       setPage(page + 1)
    }
-   if(!query) return <p>Nenhum filme foi encontrado.</p>
+   if (!query) return <p>Nenhum filme foi encontrado.</p>
 
    return (
       <section className="search-section">
@@ -47,15 +48,15 @@ const SearchPage = () => {
                </div>
             }
          </div>
-         <Footer/>
+         <Footer />
       </section>
    )
 }
 
 const Search = () => {
    return (
-      <Suspense fallback={<p>carregando...</p>}>
-         <SearchPage/>
+      <Suspense fallback={<Loading />}>
+         <SearchPage />
       </Suspense>
    )
 }

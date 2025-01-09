@@ -1,0 +1,134 @@
+@media screen and (max-width: 768px){
+   .header{
+      padding: 15px;
+   }
+   .header nav{
+      padding: 0;
+   }
+   .header nav ul {
+      display: none;
+   }
+   .logo{
+      font-size: 22px;
+   }
+   .logo p{
+      letter-spacing: 10px;
+   }
+   .logo span{
+      font-size: 18px;
+   }
+   .icon-logo{
+      font-size: 30px;
+   }
+   .search-area{
+      padding: 5px;
+      margin-left: 8px;
+   }
+   .showSearch{
+      width: 90%;
+   }
+   .hero-slider-area{
+      height: auto;
+   }
+   .hero-slide{
+      height: 50vh;
+   }
+   .hero-slide-left {
+      width: 99%;
+      padding: 30px 15px;
+   }
+   .hero-slide-left h1{
+      font-size: 33px;
+   }
+   .hero-slide-infos, .readmore-details{
+      font-size: 12px;
+      flex-wrap: wrap;
+      width: 100%;
+   }
+   .hero-debut{
+      padding: 4px 8px;
+   }
+   .watchBtn {
+      width: 100px;
+      height: 37px;
+      font-size: 16px;
+      border-radius: 12px;
+   }
+   .hero-slide-btn-area {
+      justify-content: center;
+      padding: 10px;
+      bottom: 340px;
+   }
+   .hero-overview{
+      display: none;
+   }
+   .hero-overview-mobile{
+      display: flex;
+   }
+   section {
+      padding: 3%;
+   }
+   .movie, .topRated-movie{
+      width: 150px;
+      margin: 5px;
+      border-radius: 10px;
+      background-color: #000000;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      color: #ffffff;
+   }
+   .movie-poster, .movie-poster img, .topRated-poster, .topRated-poster img{
+      width: 150px;
+      height: auto;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      object-fit: cover;
+      opacity: 1;
+      transition: all 0.5s;
+   }
+   .topRated-slide-btn{
+      padding: 6px;
+      margin: 0;
+   }
+   .movie-infos{
+      padding: 5px;
+   }
+   .movie-overview, .readmore-btn{
+      margin-bottom: -105px;
+   }
+   .readmore-infos {
+      flex-direction: column-reverse;
+   }
+   .readmore-info-left{
+      margin: 0;
+   }
+   .readmore-info-left h1 {
+      font-size: 24px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 10px;
+   }
+   .readmore-info-left p{
+      font-size: 13px;
+   }
+   .readmore-info-left span{
+      margin: 0 5px;
+   }
+   .readmore-info-left .buttons-area{
+      margin: 0 auto;
+   }
+   .readmore-overview{
+      margin-top: 5px;
+   }
+   .readmore-poster {
+      width: 250px;
+   }
+   .readmore-adult{
+      padding: 5px 8px;
+   }
+   .readmore-details .icon-details{
+      font-size: 15px;
+   }
+}

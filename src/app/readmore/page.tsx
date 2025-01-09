@@ -4,17 +4,18 @@ import { useMovieDetails, useReleaseDates } from "@/utils/api";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar, FaClock, FaCalendar } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import "@/styles/readmore.css";
 import { useMovieContext } from "@/utils/context";
+import { Loading } from "@/components/loading";
+import "@/styles/readmore.css";
+import "@/styles/menu.css";
+import "@/styles/response.css";
 
 const ReadMore = () => {
    const { selectedMovie } = useMovieContext();
 
    if (!selectedMovie) {
       return (
-         <div className="loading">
-            <p>Carregando...</p>
-         </div>
+         <Loading/>
       );
    }
 
@@ -60,7 +61,7 @@ const ReadMore = () => {
       }
    }, [selectedMovie?.release_date]);
 
-   if (isMovieLoading || isReleaseLoading) return <p>Carregando...</p>;
+   if (isMovieLoading || isReleaseLoading) return <Loading/>;
 
    return (
       <div>
@@ -79,25 +80,25 @@ const ReadMore = () => {
                   <h1>{selectedMovie.title}</h1>
                   <div className="readmore-details">
                      <p>
+                        <FaStar className="icon-details icon-star" />
+                        {selectedMovie.vote_average.toFixed(1)}
+                     </p>
+                     <span>|</span>
+                     <p>
                         {data?.genres[0]?.name} {data?.genres[1] && ` e ${data.genres[1].name}`}
-                     </p>
-                     <span>|</span>
-                     <p className="readmore-release">
-                        <FaCalendar className="icon-details" style={{ marginRight: "3px" }} />
-                        {dateMovie}
-                     </p>
-                     <span>|</span>
-                     <p className="readmore-adult">
-                        {certification === "L" ? "Livre" : certification === 'Livre' ? "Livre" :  `+${certification}`}
                      </p>
                      <span>|</span>
                      <p className="readmore-runtime">
                         <FaClock className="icon-details" /> {convertMinHours(data?.runtime || 0)}
                      </p>
                      <span>|</span>
-                     <p>
-                        <FaStar className="icon-details icon-star" />
-                        {selectedMovie.vote_average.toFixed(1)}
+                     <p className="readmore-adult">
+                        {certification === "L" ? "Livre" : certification === 'Livre' ? "Livre" :  `+${certification}`}
+                     </p>
+                     <span>|</span>
+                     <p className="readmore-release">
+                        <FaCalendar className="icon-details icon-release" style={{ marginRight: "3px" }} />
+                        {dateMovie}
                      </p>
                   </div>
                   <p className="readmore-overview">{selectedMovie.overview}</p>

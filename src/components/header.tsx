@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
+import { BsFillCameraReelsFill } from "react-icons/bs";
 
 export const Header = () => {
    const router = useRouter();
@@ -46,7 +47,11 @@ export const Header = () => {
    return (
       <header className="header">
          <div className="logo" onClick={handleGoMenu}>
-            MOVIES<span>API</span>
+            <BsFillCameraReelsFill className="icon-logo"/>
+            <div>
+               <p>WEB</p>
+               <span>CINEMA</span>
+            </div>
          </div>
          <nav>
             <ul>
@@ -62,7 +67,6 @@ export const Header = () => {
                </button>
             </form>
          </nav>
-         <button className="login">Login</button>
       </header>
    )
 }
