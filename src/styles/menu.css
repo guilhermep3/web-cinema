@@ -274,7 +274,7 @@
    align-items: center;
 }
 .topRated-slide-btn{
-   font-size: 20px;
+   font-size: 24px;
    padding: 12px;
    height: 90%;
    border: none;
@@ -282,7 +282,7 @@
    background-color: #252525c5;
    transition: all 0.3s;
    cursor: pointer;
-   margin: 8px;
+   margin: 0;
    z-index: 10;
    box-shadow: 0px 0px 10px #000000;
 }

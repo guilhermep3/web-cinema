@@ -13,11 +13,15 @@ import "@/styles/response.css"
 
 function Home() {
   const [movies, setMovies] = useState<MovieType[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => {
+     const savedPage = localStorage.getItem('page')
+     return savedPage ? parseInt(savedPage, 10) : 1
+  });
   const { data } = useMovies(page);
 
   useEffect(() => {
      setMovies(data?.results)
+     localStorage.setItem('page', page.toString());
   }, [data])
 
   function handlePrevBtn() {

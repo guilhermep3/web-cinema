@@ -12,11 +12,7 @@ export const TopRatedMovies = () => {
    const [movies, setMovies] = useState<MovieType[]>();
    const router = useRouter();
    const [leftMargin, setLeftMargin] = useState(0);
-   const [currentSlide, setCurrentSlide] = useState(0);
    const { setSelectedMovie } = useMovieContext();
-   const totalSlides = 20;
-   const slideWidth = 271;
-   const itemsPerPage = 4;
 
 
    useEffect(() => {
@@ -29,19 +25,29 @@ export const TopRatedMovies = () => {
    }
 
    function handlePrevSlide() {
-      const newSlide = (currentSlide - itemsPerPage + totalSlides) % totalSlides;
-      setCurrentSlide(newSlide);
-      updateMarginSlide(newSlide);
+      let scrollx = leftMargin + Math.round(window.innerWidth / 2);
+      if(scrollx > 0){
+         scrollx = 0
+      }
+      setLeftMargin(scrollx)
+      console.log(scrollx)
    }
    
    function handleNextSlide() {
-      const newSlide = (currentSlide + itemsPerPage) % totalSlides;
-      setCurrentSlide(newSlide);
-      updateMarginSlide(newSlide);
+      if(movies){
+      let scrollx = leftMargin - Math.round(window.innerWidth / 2);
+         let moviesWidth = window.innerWidth > 768 
+            ? movies?.length * 260 
+            : movies?.length * 160;
+         if(window.innerWidth - moviesWidth > scrollx){
+            window.innerWidth > 768 
+               ? scrollx = (window.innerWidth - moviesWidth) -400
+               : scrollx = (window.innerWidth - moviesWidth) -100
+         }
+         setLeftMargin(scrollx)
+         console.log(scrollx)
+      }
    }
-   function updateMarginSlide(newSlide: number) {
-      setLeftMargin(newSlide * slideWidth);
-   }   
 
    return (
       <>
@@ -53,7 +59,7 @@ export const TopRatedMovies = () => {
                <button className="topRated-slide-btn" onClick={handlePrevSlide}><FaArrowLeft /></button>
                <button className="topRated-slide-btn" onClick={handleNextSlide}><FaArrowRight /></button>
             </div>
-            <div className="topRated-list" style={{ marginLeft: `-${leftMargin}px`}}>
+            <div className="topRated-list" style={{ marginLeft: `${leftMargin}px`}}>
                {movies?.map((movie) => (
                   <div key={movie.id} className="movie" onClick={() => handleNavReadMore(movie)}>
                      <div className="movie-poster">
