@@ -22,7 +22,6 @@
 }
 .buttons-area{
    display: flex;
-   justify-content: center;
    width: 100%;
 }
 .buttons-area button{

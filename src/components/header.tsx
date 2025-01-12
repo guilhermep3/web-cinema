@@ -11,7 +11,7 @@ export const Header = () => {
 
       if (typeof window !== "undefined") {
          const handleScroll = () => {
-            const header = document.querySelector('header')
+            const header = document.querySelector('.header')
             if (typeof document !== "undefined") {
                if (window.scrollY > 1) {
                   header?.classList.add('headerBG');
@@ -20,7 +20,7 @@ export const Header = () => {
                }
             }
          }
-         window.addEventListener('srcoll', handleScroll);
+         window.addEventListener('scroll', handleScroll);
       }
 
    function handleInputClass() {
