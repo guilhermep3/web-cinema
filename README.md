@@ -1,7 +1,7 @@
 # Movies Api - Cinema
 Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir informações sobre filmes, Inclui slides e paginação.
-
-<img src="https://github.com/user-attachments/assets/f60c7ae8-f476-4b3c-834b-8d6964ac9568" alt="Movies API - Cinema"/>
+<h2 align="center"><a href="https://web-cinema.vercel.app/">Acessar<a/><h2/>
+<img src="https://github.com/user-attachments/assets/6b3b8725-b876-4567-be91-6ecb2e3451a7" alt="Movies API - Cinema"/>
 ## Bibliotecas utilizadas:
 
 - `Tanstack React Query`: ajuda nas requisições da api
