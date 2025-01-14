@@ -89,13 +89,14 @@
 .hero-slide-infos{
    display: flex;
    align-items: center;
+   flex-wrap: wrap;
 }
 .hero-slide-infos span{
    margin: 0 10px;
 }
 .icon-moreinfos{
    cursor: pointer;
-   font-size: 16px;
+   font-size: 18px;
 }
 .hero-slide-left {
    display: flex;

@@ -1,5 +1,4 @@
 "use client"
-import { Header } from "@/components/header";
 import { HeroSlide } from "@/components/heroslide";
 import { MoviesList } from "@/components/movieslist";
 import { TopRatedMovies } from "@/components/toprated";
@@ -37,7 +36,6 @@ function Home() {
 
   return (
      <div>
-        <Header />
         <main>
            <HeroSlide />
            <section id="topRated" className="TopRated-section">

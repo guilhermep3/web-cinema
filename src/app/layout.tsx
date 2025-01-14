@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import { MovieProvider } from "@/utils/context";
 import { Providers } from "@/utils/provider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Header } from "@/components/header";
+import { UserProvider } from "@/utils/userContext";
 
 export const metadata: Metadata = {
   title: "Web Cinema",
@@ -26,12 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <Providers>
-        <MovieProvider>
-            {children}
-        </MovieProvider>
-          </Providers>
+      <body>
+        <Providers>
+          <MovieProvider>
+            <UserProvider>
+              <Header />
+              {children}
+            </UserProvider>
+          </MovieProvider>
+        </Providers>
       </body>
     </html>
   );

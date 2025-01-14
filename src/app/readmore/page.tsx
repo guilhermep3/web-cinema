@@ -1,5 +1,4 @@
 "use client";
-import { Header } from "@/components/header";
 import { useMovieDetails, useReleaseDates } from "@/utils/api";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaStar, FaClock, FaCalendar } from "react-icons/fa";
@@ -65,7 +64,6 @@ const ReadMore = () => {
 
    return (
       <div>
-         <Header />
          <div className="readmore-overlay"></div>
          <section
             style={

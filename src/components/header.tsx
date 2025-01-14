@@ -1,11 +1,13 @@
 "use client"
+import { useUser } from "@/utils/userContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
+import { UserHeader } from "./userHeader";
 
 export const Header = () => {
-   const [isMobileNav, setIsMobileNav] = useState<boolean>(false)
+   const {user, setUser} = useUser()
    const router = useRouter();
    const [search, setSearch] = useState<string>();
 
@@ -36,6 +38,9 @@ export const Header = () => {
    function handleGoMenu() {
       router.push('/')
    }
+   function handleGoLogin() {
+      router.push('/login')
+   }
 
    function handleSendSearch(e: any) {
       e.preventDefault()
@@ -44,12 +49,14 @@ export const Header = () => {
       setSearch('')
    }
 
-   function handleMenuMobileClick() {
-      setIsMobileNav(!isMobileNav)
+   function handleShowMobile() {
+      if (typeof window !== 'undefined') {
+         document.querySelector('.mobile-input-area')?.classList.toggle('show-mobile-input-area');
+      }
    }
 
-   function handleShowMobile(){
-
+   function handleCleanUser(){
+      setUser({name: '', lastname: ''})
    }
 
    return (
@@ -71,13 +78,7 @@ export const Header = () => {
                </button>
             </form>
             <FaSearch className="search-lupe-mobile" onClick={handleShowMobile} />
-            <button className="login">Login</button>
-            <div className={`mobile-burger ${isMobileNav ? 'burger-active' : ''}`}
-               onClick={handleMenuMobileClick}>
-               <span></span>
-               <span></span>
-               <span></span>
-            </div>
+            {user.name && user.lastname ? <UserHeader/> : <button className="login" onClick={handleGoLogin}>Login</button>}
          </nav>
          <div className="mobile-input-area">
             <form className="search-area-mobile search-area-border" onSubmit={(e) => handleSendSearch(e)}>

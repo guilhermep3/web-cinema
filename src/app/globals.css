@@ -5,6 +5,7 @@
   --foreground: #ffffff;
   --main-color: #d30707;
   --second-color: #bed307;
+  --dark-blue: #14141f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,7 +71,7 @@ header{
   transition: all 0.5s;
 }
 .headerBG{
-  background: #14141f;
+  background: var(--dark-blue);
 }
 .logo{
   display: flex;
@@ -115,11 +116,11 @@ header li a:hover::after{
   width: 100%;
   left: 0;
 }
-.search-area{
+.search-area, .search-area-mobile{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border: 1px solid transparent;
   overflow: hidden;
 }
@@ -127,7 +128,7 @@ header li a:hover::after{
   border: 1px solid #333333;
   border-radius: 15px;
 }
-.search-area button{
+.search-area button, .search-area-mobile button{
   background: none;
   border: none;
 }
@@ -190,39 +191,29 @@ header li a:hover::after{
   background-color: var(--main-color);
   cursor: pointer;
 }
-.mobile-burger{
+.search-lupe-mobile{
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 100;
-  margin-left: 10px;
-}
-.mobile-burger span{
-  width: 30px;
-  height: 3px;
-  background-color: #ffffff;
-  display: block;
-  transition: all 0.5s ease;
-}
-.mobile-burger.burger-active span:nth-child(1){
-  transform: translateY(8px) rotate(130deg);
-}
-.mobile-burger.burger-active span:nth-child(2){
-  display: none;
-}
-.mobile-burger.burger-active span:nth-child(3){
-  transform: translateY(-0px) rotate(-130deg);
+  margin: 0px 12px;
+  z-index: 10;
 }
 .mobile-input-area{
-  display: none;
+  display: flex;
   position: fixed;
-  top: 70px;
+  top: 40px;
   left: 0;
   right: 0;
+  opacity: 0;
+  visibility: hidden;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #14141f;
+  background-color: var(--dark-blue);
+  transition: top 0.3s, opacity 0.5s ease-out;
+}
+.show-mobile-input-area{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
 }
 .all-movies-section{
   display: flex;
@@ -245,7 +236,7 @@ header li a:hover::after{
 }
 footer{
   padding: 20px 50px;
-  background-color: #14141f;
+  background-color: var;
 }
 footer {
   font-size: 14px;

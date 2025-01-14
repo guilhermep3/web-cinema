@@ -1,6 +1,7 @@
 @media screen and (max-width: 768px){
    .header{
       padding: 5px 15px;
+      background: var(--dark-blue);
    }
    .header nav{
       padding: 0;
@@ -17,11 +18,8 @@
    .login{
       padding: 6px 10px;
    }
-   .mobile-burger{
-      display: flex;
-   }
-   .mobile-input-area{
-      display: flex;
+   .search-lupe-mobile{
+      display: block;
    }
    .search-area{
       display: none;

@@ -1,5 +1,4 @@
 "use client"
-import { Header } from "@/components/header";
 import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
@@ -34,7 +33,6 @@ const SearchPage = () => {
 
    return (
       <section className="search-section">
-         <Header />
          <div className="movies-area">
             <div className="movies-title-area">
                <h1 className="search-result-title">Resultados para: <span>{query}</span></h1>
