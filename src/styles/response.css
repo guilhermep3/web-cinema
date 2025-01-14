@@ -1,6 +1,6 @@
 @media screen and (max-width: 768px){
    .header{
-      padding: 15px;
+      padding: 5px 15px;
    }
    .header nav{
       padding: 0;
@@ -11,16 +11,20 @@
    .logo{
       font-size: 22px;
    }
-   .logo p{
-      letter-spacing: 10px;
+   .logo img{
+      width: 80px;
    }
-   .logo span{
-      font-size: 18px;
+   .login{
+      padding: 6px 10px;
    }
-   .icon-logo{
-      font-size: 30px;
+   .mobile-burger{
+      display: flex;
+   }
+   .mobile-input-area{
+      display: flex;
    }
    .search-area{
+      display: none;
       padding: 5px;
       margin-left: 8px;
    }
@@ -31,14 +35,18 @@
       height: auto;
    }
    .hero-slide{
-      height: 50vh;
+      height: 30vh;
+      margin-top: 70px;
    }
    .hero-slide-left {
       width: 99%;
-      padding: 30px 15px;
+      padding: 10px 15px;
+      justify-content: end;
+      background: linear-gradient(270deg, #00000004, #00000046 90%);
+      margin-bottom: 0px;
    }
    .hero-slide-left h1{
-      font-size: 33px;
+      font-size: 30px;
    }
    .hero-slide-infos, .readmore-details{
       font-size: 12px;
@@ -50,20 +58,42 @@
    }
    .watchBtn {
       width: 100px;
-      height: 37px;
+      height: 40px;
       font-size: 16px;
       border-radius: 12px;
+      margin-top: 5px;
    }
    .hero-slide-btn-area {
-      justify-content: center;
       padding: 10px;
-      bottom: 340px;
+      bottom: 440px;
+   }
+   .hero-slide-btn{
+      font-size: 20px;
+      padding: 8px;
+      border: none;
+      margin: 0px 0px -12px 0px;
+      background: none;
+      cursor: pointer;
+      color: #ffffff;
+      transition: all 0.3s;
+      z-index: 10;
+   }
+   .hero-slide-btn-area span{
+      font-size: 17px;
+      margin: 0 7px;
+      border-radius: 50%;
+      border: none;
+      transition: all 0.3s;
+      color: #ffffff;
+      cursor: pointer;
+      z-index: 10;
+   }
+   .addBtn{
+      font-size: 16px;
+      padding: 7px 14px;
    }
    .hero-overview{
       display: none;
-   }
-   .hero-overview-mobile{
-      display: flex;
    }
    section {
       padding: 3%;
@@ -100,6 +130,7 @@
    }
    .readmore-infos {
       flex-direction: column-reverse;
+      margin-top: 30px;
    }
    .readmore-info-left{
       margin: 0;
@@ -108,7 +139,7 @@
       font-size: 24px;
       text-align: center;
       margin: 0 auto;
-      margin-top: 10px;
+      margin-top: 8px;
    }
    .readmore-info-left p{
       font-size: 13px;
@@ -120,10 +151,14 @@
       margin: 0 auto;
    }
    .readmore-overview{
-      margin-top: 5px;
+      margin: 10px 5px;
+      text-align: center;
+   }
+   .hero-release-date{
+      display: none;
    }
    .readmore-poster {
-      width: 250px;
+      width: 180px;
    }
    .readmore-adult{
       padding: 5px 8px;

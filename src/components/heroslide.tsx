@@ -9,6 +9,8 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { MdLocalMovies } from "react-icons/md";
 
 export const HeroSlide = () => {
+   if (typeof window === "undefined") return ;
+
    const [movies, setMovies] = useState<MovieType[]>();
    const { data } = useSlideMovies();
    const [newMargin, setNewMargin] = useState(0);
@@ -96,14 +98,13 @@ export const HeroSlide = () => {
                      <div className="hero-slide-infos">
                         <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details icon-star" /></p>
                         <span>|</span>
-                        <p><FaCalendar className="icon-details" /> {formateDate(movie.release_date)}</p>
-                        <span>|</span>
+                        <p className="hero-release-date"><FaCalendar className="icon-details" /> {formateDate(movie.release_date)}</p>
+                        <span className="hero-release-date">|</span>
                         <p className="hero-debut"><MdLocalMovies className="icon-details" />Estreia</p>
                         <span>|</span>
                         <FaInfoCircle className="icon-moreinfos" onClick={() => handleNavReadMore(movie)} title="Ver mais informações" />
                      </div>
                      <p className="hero-overview">{movie.overview}</p>
-                     <p className="hero-overview-mobile">{movie.overview.slice(0, 150)}...</p>
                      <button className="watchBtn">ASSISTIR</button>
                   </div>
                </div>

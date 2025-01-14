@@ -63,10 +63,10 @@ header{
   left: 0;
   right: 0;
   z-index: 99;
-  padding: 20px 60px;
+  padding: 10px 60px;
   font-size: 17px;
   color: #ffffff;
-  background: #14141f54;
+  background: #14141f24;
   transition: all 0.5s;
 }
 .headerBG{
@@ -80,17 +80,8 @@ header{
   color: #ffffff;
   cursor: pointer;
 }
-.logo p{
-  letter-spacing: 12px;
-}
-.logo span{
-  font-size: 23px;
-  color: var(--main-color);
-}
-.icon-logo{
-  font-size: 36px;
-  color: var(--main-color);
-  margin-right: 5px;
+.logo img{
+  width: 100px;
 }
 header nav {
   display: flex;
@@ -140,12 +131,12 @@ header li a:hover::after{
   background: none;
   border: none;
 }
-.search-icon-lupe, .search-icon-send{
+.search-icon-lupe, .search-icon-send, .search-lupe-mobile{
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s;
 }
-.search-icon-lupe{
+.search-icon-lupe, .search-lupe-mobile{
   margin-right: 5px;
 }
 .search-icon-send{
@@ -169,6 +160,10 @@ header li a:hover::after{
   opacity: 1;
   margin-right: 0;
 }
+.send-mobile{
+  opacity: 1;
+  width: auto;
+}
 .search{
   position: relative;
   font-size: 16px;
@@ -182,7 +177,7 @@ header li a:hover::after{
   color: #ffffff;
   transition: all 0.3s;
 }
-.showSearch{
+.showSearch, .search-mobile{
   width: 250px;
   opacity: 1;
 }
@@ -194,6 +189,40 @@ header li a:hover::after{
   color: #ffffff;
   background-color: var(--main-color);
   cursor: pointer;
+}
+.mobile-burger{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 100;
+  margin-left: 10px;
+}
+.mobile-burger span{
+  width: 30px;
+  height: 3px;
+  background-color: #ffffff;
+  display: block;
+  transition: all 0.5s ease;
+}
+.mobile-burger.burger-active span:nth-child(1){
+  transform: translateY(8px) rotate(130deg);
+}
+.mobile-burger.burger-active span:nth-child(2){
+  display: none;
+}
+.mobile-burger.burger-active span:nth-child(3){
+  transform: translateY(-0px) rotate(-130deg);
+}
+.mobile-input-area{
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #14141f;
 }
 .all-movies-section{
   display: flex;
@@ -268,7 +297,7 @@ footer a:hover{
   background: var(--main-color);
   color: #ffffff;
   border: none;
-  border-radius: 15px;
+  border-radius: 8px;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;

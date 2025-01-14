@@ -3,25 +3,25 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
-import { BsFillCameraReelsFill } from "react-icons/bs";
 
 export const Header = () => {
+   const [isMobileNav, setIsMobileNav] = useState<boolean>(false)
    const router = useRouter();
    const [search, setSearch] = useState<string>();
 
-      if (typeof window !== "undefined") {
-         const handleScroll = () => {
-            const header = document.querySelector('.header')
-            if (typeof document !== "undefined") {
-               if (window.scrollY > 1) {
-                  header?.classList.add('headerBG');
-               } else {
-                  header?.classList.remove('headerBG');
-               }
+   if (typeof window !== "undefined") {
+      const handleScroll = () => {
+         const header = document.querySelector('.header')
+         if (typeof document !== "undefined") {
+            if (window.scrollY > 1) {
+               header?.classList.add('headerBG');
+            } else {
+               header?.classList.remove('headerBG');
             }
          }
-         window.addEventListener('scroll', handleScroll);
       }
+      window.addEventListener('scroll', handleScroll);
+   }
 
    function handleInputClass() {
       if (typeof document !== "undefined") {
@@ -44,14 +44,18 @@ export const Header = () => {
       setSearch('')
    }
 
+   function handleMenuMobileClick() {
+      setIsMobileNav(!isMobileNav)
+   }
+
+   function handleShowMobile(){
+
+   }
+
    return (
       <header className="header">
          <div className="logo" onClick={handleGoMenu}>
-            <BsFillCameraReelsFill className="icon-logo"/>
-            <div>
-               <p>WEB</p>
-               <span>CINEMA</span>
-            </div>
+            <img src="./web-cinema-light.png" alt="logo da web cinema" />
          </div>
          <nav>
             <ul>
@@ -66,7 +70,23 @@ export const Header = () => {
                   <IoIosSend className="search-icon-send" />
                </button>
             </form>
+            <FaSearch className="search-lupe-mobile" onClick={handleShowMobile} />
+            <button className="login">Login</button>
+            <div className={`mobile-burger ${isMobileNav ? 'burger-active' : ''}`}
+               onClick={handleMenuMobileClick}>
+               <span></span>
+               <span></span>
+               <span></span>
+            </div>
          </nav>
+         <div className="mobile-input-area">
+            <form className="search-area-mobile search-area-border" onSubmit={(e) => handleSendSearch(e)}>
+               <input type="search" className="search search-mobile " onChange={(e) => setSearch(e.target.value)} placeholder="pesquisar..." />
+               <button type="submit">
+                  <IoIosSend className="search-icon-send send-mobile" />
+               </button>
+            </form>
+         </div>
       </header>
    )
 }
