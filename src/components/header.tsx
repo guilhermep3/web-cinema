@@ -2,9 +2,8 @@
 import { useUser } from "@/utils/userContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
-import { UserHeader } from "./userHeader";
 
 export const Header = () => {
    const {user, setUser} = useUser()
@@ -55,8 +54,8 @@ export const Header = () => {
       }
    }
 
-   function handleCleanUser(){
-      setUser({name: '', lastname: ''})
+   function handleNavUserPage(){
+      router.push('/userpage')
    }
 
    return (
@@ -78,7 +77,10 @@ export const Header = () => {
                </button>
             </form>
             <FaSearch className="search-lupe-mobile" onClick={handleShowMobile} />
-            {user.name && user.lastname ? <UserHeader/> : <button className="login" onClick={handleGoLogin}>Login</button>}
+            {user.name && user.lastname 
+               ? <FaUserCircle className="user-icon-header" onClick={handleNavUserPage}/> 
+               : <button className="login" onClick={handleGoLogin}>Login</button>
+            }
          </nav>
          <div className="mobile-input-area">
             <form className="search-area-mobile search-area-border" onSubmit={(e) => handleSendSearch(e)}>

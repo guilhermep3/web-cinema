@@ -104,7 +104,7 @@ const ReadMore = () => {
                      <button className="watchBtn">ASSISTIR</button>
                      <button className="addBtn addBtn-hover">
                         <MdLibraryAdd className="addBtn-icon" />
-                        Adicionar
+                        Salvar
                      </button>
                   </div>
                </div>

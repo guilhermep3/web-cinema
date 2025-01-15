@@ -125,7 +125,7 @@
 }
 
 .page-number{
-   color: #979797;
+   color: var(--light-blue);
 }
 .movies-title-area{
    display: flex;

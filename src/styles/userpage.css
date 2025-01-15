@@ -1,0 +1,121 @@
+/* Estilos gerais */
+.userpage-section {
+   margin-top: 150px;
+   display: flex;
+   justify-content: center;
+}
+.userpage-container {
+   width: 90%;
+   max-width: 1200px;
+   background-color: #292938;
+   border-radius: 15px;
+   padding: 20px;
+   color: #ffffff;
+}
+/* Informações do usuário */
+.user-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 2px solid #75758a;
+   padding-bottom: 20px;
+   margin-bottom: 20px;
+}
+.user-profile {
+   display: flex;
+   text-align: center;
+}
+.user-image-area{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+.user-image {
+   font-size: 120px;
+   border-radius: 50%;
+}
+.profile-btn {
+   margin-top: 10px;
+   padding: 5px 10px;
+   background: #52526b;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+}
+.username{
+   font-size: 22px;
+   margin: 10px 0px 0px 10px;
+}
+.user-actions {
+   display: flex;
+   gap: 10px;
+}
+.btnDelete, .btnEdit {
+   padding: 8px 16px;
+   border-radius: 6px;
+   font-size: 16px;
+   cursor: pointer;
+   border: none;
+}
+.btnDelete {
+   background-color: var(--main-color);
+   color: #ffffff;
+}
+.btnEdit {
+   background-color: #ffffff;
+   color: #000;
+}
+/* Conteúdo inferior */
+.user-details {
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+}
+.user-stats,
+.saved-movies {
+   flex: 1;
+   background: #1d1d29;
+   padding: 15px;
+   border-radius: 10px;
+   height: 100%;
+}
+.saved-movies h2,
+.user-stats h2 {
+   margin-bottom: 15px;
+}
+.savedmovie {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+.savedmovie-nameyear{
+   display: flex;
+   flex-direction: column;
+   color: #ffffff;
+}
+.savedmovie-name{
+   font-size: 17px;
+}
+.savedmovie-year{
+   font-size: 14px;
+   color: #e4e4e4;
+   margin-top: 5px;
+}
+.savedmovie-poster {
+   width: 50px;
+   height: 70px;
+   background-color: #52526b;
+   border-radius: 5px;
+   margin-right: 10px;
+}
+.savedmovie-info {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   align-items: center;
+}
+.info-icon {
+   font-size: 18px;
+   color: #ffffff;
+}

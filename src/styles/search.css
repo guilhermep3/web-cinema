@@ -8,11 +8,6 @@
    font-size: 25px;
    color: var(--main-color);
 }
-.total-movies{
-   font-size: 16px;
-   margin: 10px;
-   color: #979797;
-}
 .search-movies-area{
    display: flex;
    justify-content: center;

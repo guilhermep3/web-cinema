@@ -7,7 +7,7 @@ type UserContextType = {
 }
 export const UserContext = createContext<UserContextType | null>(null);
 export const UserProvider = ({children}: {children: ReactNode}) => {
-   const [user, setUser] = useState<{name: string, lastname: string}>({name: '', lastname: ''});
+   const [user, setUser] = useState<{name: string, lastname: string}>({name: 'Guilherme', lastname: 'Pereira'});
 
    return (
       <UserContext.Provider value={{user, setUser}}>

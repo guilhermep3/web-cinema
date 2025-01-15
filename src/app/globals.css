@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 :root {
-  --background: #040407;
+  --background: #07070c;
   --foreground: #ffffff;
   --main-color: #d30707;
   --second-color: #bed307;
   --dark-blue: #14141f;
+  --dark-blue2: #292938;
+  --light-blue: #75758a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #040407;
+    --background: #07070c;
     --foreground: #ededed;
   }
 }
@@ -173,7 +175,7 @@ header li a:hover::after{
   opacity: 0;
   outline: none;
   border: none;
-  border-bottom: 2px solid #979797;
+  border-bottom: 2px solid var(--light-blue);
   background-color: transparent;
   color: #ffffff;
   transition: all 0.3s;
@@ -190,6 +192,12 @@ header li a:hover::after{
   color: #ffffff;
   background-color: var(--main-color);
   cursor: pointer;
+}
+.user-icon-header {
+  font-size: 36px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: 10px;
 }
 .search-lupe-mobile{
   display: none;
@@ -241,7 +249,7 @@ footer{
 footer {
   font-size: 14px;
   text-align: center;
-  color: #979797;
+  color: var(--light-blue);
   width: 100%;
 }
 footer a:hover{

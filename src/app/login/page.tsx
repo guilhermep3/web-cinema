@@ -1,8 +1,9 @@
 "use client"
 import "@/styles/login.css";
+import "@/styles/modal.css";
 import { useUser } from "@/utils/userContext";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -12,6 +13,7 @@ const SignUpSchema = z.object({
 })
 
 const Login = () => {
+   const router = useRouter()
    const { user, setUser } = useUser();
    const { register, handleSubmit, formState: { errors } } = useForm<any>({
       resolver: zodResolver(SignUpSchema)
@@ -23,7 +25,14 @@ const Login = () => {
    }
 
    function handleFormModal() {
-      document.querySelector('.form-modal-container')?.classList.toggle('show-form-modal-container')
+      document.querySelector('.modal-container')?.classList.add('show-modal-container');
+
+   }
+
+   function handleGoUserPage() {
+      if (typeof window !== 'undefined') {
+         router.push('/userpage')
+      }
    }
 
    return (
@@ -42,11 +51,11 @@ const Login = () => {
             </div>
             <input type="submit" className="submit" value="Enviar" />
          </form>
-         <div className="form-modal-container">
-            <div className="form-modal">
-               <p className="form-modal-title">Login Concluído</p>
-               <p className="form-modal-text">Seu login foi realizado com sucesso. Agora você pode aproveitar todos os nossos filmes.</p>
-               <button onClick={handleFormModal}>OK</button>
+         <div className="modal-container">
+            <div className="modal">
+               <p className="modal-title">Login Concluído</p>
+               <p className="modal-text">Seu login foi realizado com sucesso. Agora você pode aproveitar todos os nossos filmes.</p>
+               <button onClick={handleGoUserPage}>OK</button>
             </div>
          </div>
       </div>
