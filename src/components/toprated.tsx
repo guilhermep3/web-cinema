@@ -5,7 +5,7 @@ import { StarsRating } from "./stars";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useTopRatedMovies } from "@/utils/api";
 import { useRouter } from "next/navigation";
-import { useMovieContext } from "@/utils/context";
+import { useMovieContext } from "@/utils/movieContext";
 
 export const TopRatedMovies = () => {
    const { data } = useTopRatedMovies();

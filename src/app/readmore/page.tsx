@@ -1,20 +1,20 @@
 "use client";
 import { useMovieDetails, useReleaseDates } from "@/utils/api";
 import { MdLibraryAdd } from "react-icons/md";
-import { FaStar, FaClock, FaCalendar } from "react-icons/fa";
+import { FaStar, FaClock, FaCalendar, FaCheck } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { useMovieContext } from "@/utils/context";
+import { useMovieContext } from "@/utils/movieContext";
 import { Loading } from "@/components/loading";
 import "@/styles/readmore.css";
 import "@/styles/menu.css";
 import "@/styles/response.css";
 
 const ReadMore = () => {
-   const { selectedMovie } = useMovieContext();
+   const { selectedMovie, saveMovie, savedMovies } = useMovieContext();
 
    if (!selectedMovie) {
       return (
-         <Loading/>
+         <Loading />
       );
    }
 
@@ -60,7 +60,14 @@ const ReadMore = () => {
       }
    }, [selectedMovie?.release_date]);
 
-   if (isMovieLoading || isReleaseLoading) return <Loading/>;
+   function handleSaveMovie() {
+      if (selectedMovie) {
+         saveMovie(selectedMovie)
+         console.log(selectedMovie)
+      }
+   }
+
+   if (isMovieLoading || isReleaseLoading) return <Loading />;
 
    return (
       <div>
@@ -91,7 +98,7 @@ const ReadMore = () => {
                      </p>
                      <span>|</span>
                      <p className="readmore-adult">
-                        {certification === "L" ? "Livre" : certification === 'Livre' ? "Livre" :  `+${certification}`}
+                        {certification === "L" ? "Livre" : certification === 'Livre' ? "Livre" : `+${certification}`}
                      </p>
                      <span>|</span>
                      <p className="readmore-release">
@@ -102,10 +109,14 @@ const ReadMore = () => {
                   <p className="readmore-overview">{selectedMovie.overview}</p>
                   <div className="buttons-area">
                      <button className="watchBtn">ASSISTIR</button>
-                     <button className="addBtn addBtn-hover">
-                        <MdLibraryAdd className="addBtn-icon" />
-                        Salvar
-                     </button>
+                     {savedMovies.some(movie => movie.id === selectedMovie.id)
+                        ? <button className="addBtn addBtn-hover" onClick={handleSaveMovie}>
+                           <FaCheck className="addBtn-icon" />Salvo
+                        </button>
+                        : <button className="addBtn addBtn-hover" onClick={handleSaveMovie}>
+                           <MdLibraryAdd className="addBtn-icon" />Salvar
+                        </button>
+                     }
                   </div>
                </div>
                <div className="readmore-info-right">

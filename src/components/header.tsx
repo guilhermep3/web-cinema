@@ -6,7 +6,7 @@ import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
 
 export const Header = () => {
-   const {user, setUser} = useUser()
+   const {user, setUser, imageSrc} = useUser();
    const router = useRouter();
    const [search, setSearch] = useState<string>();
 
@@ -78,7 +78,8 @@ export const Header = () => {
             </form>
             <FaSearch className="search-lupe-mobile" onClick={handleShowMobile} />
             {user.name && user.lastname 
-               ? <FaUserCircle className="user-icon-header" onClick={handleNavUserPage}/> 
+               ? <img src={`${imageSrc}`} alt={`Foto de ${user.name}`} className="user-image-header"
+                  onClick={handleNavUserPage} title={`${user.name}`}/> 
                : <button className="login" onClick={handleGoLogin}>Login</button>
             }
          </nav>

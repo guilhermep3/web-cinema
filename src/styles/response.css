@@ -138,6 +138,7 @@
       text-align: center;
       margin: 0 auto;
       margin-top: 8px;
+      margin-bottom: 8px;
    }
    .readmore-info-left p{
       font-size: 13px;
@@ -156,10 +157,13 @@
       display: none;
    }
    .readmore-poster {
-      width: 180px;
+      width: 170px;
    }
    .readmore-adult{
       padding: 5px 8px;
+   }
+   .readmore-details{
+      justify-content: center;
    }
    .readmore-details .icon-details{
       font-size: 15px;

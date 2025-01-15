@@ -41,6 +41,7 @@
    outline: none;
    transition: all 0.3s;
    letter-spacing: 1px;
+   color: #ffffff;
 }
 .input:focus{
    border: 3px solid #151546;
@@ -60,6 +61,7 @@
    background-color: var(--main-color);
    transition: all 0.2s;
    cursor: pointer;
+   color: #ffffff;
 }
 .submit:hover{
    filter: brightness(1.15);

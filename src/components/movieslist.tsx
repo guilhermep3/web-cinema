@@ -2,7 +2,7 @@
 import { MovieType } from "@/types/MovieType"
 import { StarsRating } from "./stars"
 import { useRouter } from "next/navigation"
-import { useMovieContext } from "@/utils/context"
+import { useMovieContext } from "@/utils/movieContext"
 
 type props = {
    movie?: MovieType,

@@ -7,8 +7,8 @@ import { useMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Footer } from "@/components/footer";
-import "@/styles/menu.css"
-import "@/styles/response.css"
+import "@/styles/menu.css";
+import "@/styles/response.css";
 
 function Home() {
   const [movies, setMovies] = useState<MovieType[]>([]);
@@ -20,7 +20,7 @@ function Home() {
       if(savedPage){
          setPage(parseInt(savedPage, 10))
       }
-   })
+   }, [])
 
   useEffect(() => {
      setMovies(data?.results)

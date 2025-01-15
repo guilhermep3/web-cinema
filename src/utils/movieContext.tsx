@@ -1,0 +1,40 @@
+"use client"
+import { MovieType } from "@/types/MovieType";
+import { createContext, ReactNode, useContext, useState } from "react"
+
+type MovieContextType = {
+   selectedMovie: MovieType | null,
+   setSelectedMovie: (movie: MovieType) => void,
+   savedMovies: MovieType[],
+   saveMovie: (movie: MovieType) => void,
+}
+export const MovieContext = createContext<MovieContextType | null>(null)
+export const MovieProvider = ({children}:{children: ReactNode} ) => {
+   const [selectedMovie, setSelectedMovie] = useState<MovieType | null>(null);
+   const [savedMovies, setSavedMovies] =  useState<MovieType[]>([])
+
+   // se algum filme salvado ja tiver o id do filme a ser salvo retorne o propio filme salvado
+   const saveMovie = (movie: MovieType) => {
+      setSavedMovies((prev) => {
+         if(prev.some((saved) => saved.id === movie.id)){
+            return prev;
+         } else {
+            return [...prev, movie];
+         }
+      })
+   };
+
+   return (
+      <MovieContext.Provider value={{selectedMovie, setSelectedMovie, savedMovies, saveMovie}}>
+         {children}
+      </MovieContext.Provider>
+   )
+}
+
+export const useMovieContext = (): MovieContextType => {
+   const context = useContext(MovieContext);
+   if (!context) {
+      throw new Error('useMovieContext must be used within a MovieProvider');
+    }
+    return context;
+}

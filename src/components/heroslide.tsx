@@ -1,7 +1,7 @@
 "use client"
 import { MovieType } from "@/types/MovieType";
 import { useSlideMovies } from "@/utils/api";
-import { useMovieContext } from "@/utils/context";
+import { useMovieContext } from "@/utils/movieContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaStar, FaCalendar, FaInfoCircle } from "react-icons/fa";

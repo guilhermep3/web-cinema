@@ -17,8 +17,9 @@
 .modal{
    max-width: 500px;
    padding: 20px;
-   border-radius: 15px;
+   margin: 10px;
    text-align: center;
+   border-radius: 15px;
    background-color: #1d1d29;
 }
 .modal-title{

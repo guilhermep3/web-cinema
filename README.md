@@ -1,5 +1,5 @@
 # Projeto em desenvolvimento
-# Movies Api - Cinema
+# Web Cinema
 Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir informações sobre filmes, Inclui slides e paginação.
 <h2 align="center"><a href="https://web-cinema.vercel.app/">Acessar<a/><h2/>
 <img src="https://github.com/user-attachments/assets/6b3b8725-b876-4567-be91-6ecb2e3451a7" alt="Movies API - Cinema"/>
