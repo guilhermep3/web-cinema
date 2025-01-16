@@ -245,7 +245,7 @@
 }
 .topRated-container{
    display: flex;
-   justify-content: start;
+   justify-content: flex-start;
    position: relative;
    width: 100%;
    margin: 0 auto;
