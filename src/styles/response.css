@@ -9,9 +9,6 @@
    .header nav ul {
       display: none;
    }
-   .logo{
-      font-size: 22px;
-   }
    .logo img{
       width: 80px;
    }
@@ -107,7 +104,7 @@
    section {
       padding: 3%;
    }
-   .movie, .topRated-movie{
+   .movie{
       width: 150px;
       margin: 5px;
       border-radius: 10px;
@@ -118,7 +115,7 @@
       cursor: pointer;
       color: #ffffff;
    }
-   .movie-poster, .movie-poster img, .topRated-poster, .topRated-poster img{
+   .movie-poster, .movie-poster img{
       width: 150px;
       height: auto;
       border-top-left-radius: 10px;
@@ -138,7 +135,7 @@
       font-size: 12px;
    }
    .movie-overview, .readmore-btn{
-      margin-bottom: -105px;
+      margin-bottom: -100px;
    }
    .readmore-infos {
       flex-direction: column-reverse;
@@ -197,7 +194,7 @@
    .user-info-right{
       flex-direction: column;
    }
-   .btnDelete, .btnEdit {
+   .btnDelete {
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 15px;

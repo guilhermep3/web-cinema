@@ -89,7 +89,6 @@ const UserPage = () => {
                      <h1 className="username">{user.name} {user.lastname}</h1>
                      <div className="user-actions">
                         <button className="btnDelete" onClick={handleShowModal}>Excluir</button>
-                        <button className="btnEdit">Editar</button>
                      </div>
                   </div>
                </div>

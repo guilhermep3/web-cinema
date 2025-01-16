@@ -65,7 +65,7 @@
    height: 100%;
    align-items: flex-end;
 }
-.btnDelete, .btnEdit {
+.btnDelete {
    padding: 8px 16px;
    border-radius: 6px;
    font-size: 16px;
@@ -75,10 +75,6 @@
 .btnDelete {
    background-color: var(--main-color);
    color: #ffffff;
-}
-.btnEdit {
-   background-color: #ffffff;
-   color: #000;
 }
 /* Conteúdo inferior */
 .user-details {

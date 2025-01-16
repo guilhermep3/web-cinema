@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-@import "@/styles/response.css";
 
 :root {
   --background: #07070c;
@@ -77,16 +76,9 @@ header{
 .headerBG{
   background: var(--dark-blue);
 }
-.logo{
-  display: flex;
-  font-size: 30px;
-  line-height: 21px;
-  font-weight: bold;
-  color: #ffffff;
-  cursor: pointer;
-}
 .logo img{
   width: 100px;
+  cursor: pointer;
 }
 header nav {
   display: flex;
