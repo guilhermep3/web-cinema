@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Footer } from "@/components/footer";
 import "@/styles/menu.css";
-import "@/styles/response.css";
+import "@/styles/response.css"
 
 function Home() {
    const [movies, setMovies] = useState<MovieType[]>([]);

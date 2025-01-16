@@ -8,7 +8,8 @@ import { Footer } from "@/components/footer";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { Loading } from "@/components/loading";
-import "@/styles/search.css"
+import "@/styles/search.css";
+import "@/styles/response.css";
 import "@/styles/response.css";
 
 const SearchPage = () => {

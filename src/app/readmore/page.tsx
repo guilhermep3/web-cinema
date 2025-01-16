@@ -5,11 +5,11 @@ import { FaStar, FaClock, FaCalendar, FaCheck } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useMovieContext } from "@/utils/movieContext";
 import { Loading } from "@/components/loading";
+import { useUser } from "@/utils/userContext";
 import "@/styles/readmore.css";
 import "@/styles/menu.css";
-import "@/styles/response.css";
 import "@/styles/modal.css";
-import { useUser } from "@/utils/userContext";
+import "@/styles/response.css";
 
 const ReadMore = () => {
    const { selectedMovie, saveMovie, savedMovies, removeMovie } = useMovieContext();

@@ -13,7 +13,6 @@ const UserPage = () => {
    const router = useRouter();
    const { user, setUser, imageSrc, setImageSrc } = useUser();
    const { savedMovies, setSelectedMovie, setSavedMovies } = useMovieContext();
-   const [ isModalVisible, setIsModalVisible ] = useState<boolean>(false);
 
    if (!user || typeof document === 'undefined'){
       return (
