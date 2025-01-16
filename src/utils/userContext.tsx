@@ -13,15 +13,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
    const [imageSrc, setImageSrc] = useState('/user-image.jpg');
 
    useEffect(() => {
-      const image = localStorage.getItem('userImg');
-      if (image) {
-         setImageSrc(image)
+      if (typeof window !== 'undefined') {
+         const image = localStorage.getItem('userImg');
+         if (image) {
+            setImageSrc(image);
+         }
       }
-   }, [])
+   }, []);
 
    useEffect(() => {
-      localStorage.setItem('userImg', imageSrc)
-   }, [imageSrc])
+      if (typeof window !== 'undefined') {
+         localStorage.setItem('userImg', imageSrc);
+      }
+   }, [imageSrc]);
 
    return (
       <UserContext.Provider value={{ user, setUser, imageSrc, setImageSrc }}>

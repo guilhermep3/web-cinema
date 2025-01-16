@@ -11,50 +11,53 @@ import "@/styles/menu.css";
 import "@/styles/response.css";
 
 function Home() {
-  const [movies, setMovies] = useState<MovieType[]>([]);
-  const [page, setPage] = useState(1);
-  const { data } = useMovies(page);
+   const [movies, setMovies] = useState<MovieType[]>([]);
+   const [page, setPage] = useState(1);
+   const { data } = useMovies(page);
 
    useEffect(() => {
-      const savedPage = localStorage.getItem('page');
-      if(savedPage){
-         setPage(parseInt(savedPage, 10))
+      if (typeof window !== 'undefined') {
+         const savedPage = localStorage.getItem('page');
+         if (savedPage) {
+            setPage(parseInt(savedPage, 10));
+         }
       }
-   }, [])
+   }, []);
 
-  useEffect(() => {
-     setMovies(data?.results)
-     localStorage.setItem('page', page.toString());
-  }, [data])
+   useEffect(() => {
+      if (typeof window !== 'undefined') {
+         localStorage.setItem('page', page.toString());
+      }
+   }, [page]);
 
-  function handlePrevBtn() {
-     setPage(page === 1 ? 1 : page - 1)
-  }
-  function handleNextBtn() {
-     setPage(page + 1)
-  }
+   function handlePrevBtn() {
+      setPage(page === 1 ? 1 : page - 1)
+   }
+   function handleNextBtn() {
+      setPage(page + 1)
+   }
 
-  return (
-     <div>
-        <main>
-           <HeroSlide />
-           <section id="topRated" className="TopRated-section">
-              <TopRatedMovies />
-           </section>
-           <section id="allMovies" className="all-movies-section">
-              <div className="movies-area">
-                 <div className="movies-title-area">
-                    <h1 className="movies-title">Todos os Filmes</h1>
-                    <p className="page-number">Página: {page}</p>
-                 </div>
-                 <MoviesList movies={movies}/>
-                 <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
-                 <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
-              </div>
-           </section>
-        </main>
-        <Footer/>
-     </div>
-  )
+   return (
+      <div>
+         <main>
+            <HeroSlide />
+            <section id="topRated" className="TopRated-section">
+               <TopRatedMovies />
+            </section>
+            <section id="allMovies" className="all-movies-section">
+               <div className="movies-area">
+                  <div className="movies-title-area">
+                     <h1 className="movies-title">Todos os Filmes</h1>
+                     <p className="page-number">Página: {page}</p>
+                  </div>
+                  <MoviesList movies={movies} />
+                  <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
+                  <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
+               </div>
+            </section>
+         </main>
+         <Footer />
+      </div>
+   )
 }
 export default Home
