@@ -1,15 +1,17 @@
 # Projeto em desenvolvimento
 # Web Cinema
-Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir informações sobre filmes, Inclui slides e paginação.
+Projeto desenvolvido com React e TypeScript, que consome a API TMDB para exibir informações sobre filmes, Inclui slides, paginação e sistema de login.
 <h2 align="center"><a href="https://web-cinema.vercel.app/">Acessar<a/><h2/>
-<img src="https://github.com/user-attachments/assets/6b3b8725-b876-4567-be91-6ecb2e3451a7" alt="Movies API - Cinema"/>
+<img src="https://github.com/user-attachments/assets/5eea4df4-f9b7-4529-ace2-efcd47a87b0b" alt="Movies API - Cinema"/>
 
 ## Bibliotecas utilizadas:
 
-- `Tanstack React Query`: ajuda nas requisições da api
-- `Axios`: facilita as requisições
-- `React Icons`: importa ícones
-- `Next.js Router e Next.js Navigation`: ferramenta do next para criar e gerenciar rotas e navegações
+- `Tanstack React Query`: Gerencia o estado de requisições à API de forma otimizada.
+- `Axios`: facilita as requisições API.
+- `React Hook Form`: Facilita a criação e validação de formulários.
+- `Zod`: Define e valida esquemas de dados, usado no login.
+- `Next.js Router e Next.js Navigation`: ferramenta do next para criar e gerenciar rotas e navegações.
+- `React Icons`: Fornece ícones prontos para uso.
 
 ### Para iniciar
 ```bash

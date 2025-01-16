@@ -10,15 +10,16 @@ type UserContextType = {
 export const UserContext = createContext<UserContextType | null>(null);
 export const UserProvider = ({children}: {children: ReactNode}) => {
    const [user, setUser] = useState<{name: string, lastname: string}>({name: '', lastname: ''});
-   const [imageSrc, setImageSrc] = useState(() => {
-      const image = localStorage.getItem('userImg')
-      console.log(image)
-      if(image){
-         return image
-      } else {
-         return '/user-image.jpg';
+   const [imageSrc, setImageSrc] = useState('/user-image.jpg');
+
+   useEffect(() => {
+      if(typeof window !== 'undefined'){
+         const image = localStorage.getItem('userImg');
+         if(image){
+            setImageSrc(image)
+         }
       }
-   });
+   }, [])
 
    useEffect(() => {
       localStorage.setItem('userImg', imageSrc)
