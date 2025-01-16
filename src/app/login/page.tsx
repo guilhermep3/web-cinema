@@ -1,12 +1,12 @@
 "use client"
-import "@/styles/login.css";
-import "@/styles/modal.css";
-import "@/styles/response.css";
 import { useUser } from "@/utils/userContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import "@/styles/login.css";
+import "@/styles/modal.css";
+import "@/styles/response.css";
 
 const SignUpSchema = z.object({
    name: z.string().min(2, 'Mínimo 2 caracteres.').max(20, 'Mámixo 20 caracteres.'),
@@ -31,10 +31,10 @@ const Login = () => {
    }
 
    function handleGoUserPage() {
-      if (typeof window !== 'undefined') {
-         router.push('/userpage')
-      }
+      router.push('/userpage');
    }
+
+
 
    return (
       <div className="login-container">

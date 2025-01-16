@@ -1,28 +1,28 @@
 "use client"
 import { useUser } from "@/utils/userContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
 
 export const Header = () => {
-   const {user, setUser, imageSrc} = useUser();
+   const { user, setUser, imageSrc } = useUser();
    const router = useRouter();
    const [search, setSearch] = useState<string>();
 
-   if (typeof window !== "undefined") {
+
+   useEffect(() => {
       const handleScroll = () => {
          const header = document.querySelector('.header')
-         if (typeof document !== "undefined") {
-            if (window.scrollY > 1) {
-               header?.classList.add('headerBG');
-            } else {
-               header?.classList.remove('headerBG');
-            }
+         if (window.scrollY > 1) {
+            header?.classList.add('headerBG');
+         } else {
+            header?.classList.remove('headerBG');
          }
       }
       window.addEventListener('scroll', handleScroll);
-   }
+      return () => window.removeEventListener('scroll', handleScroll)
+   }, [])
 
    function handleInputClass() {
       if (typeof document !== "undefined") {
@@ -49,12 +49,10 @@ export const Header = () => {
    }
 
    function handleShowMobile() {
-      if (typeof window !== 'undefined') {
-         document.querySelector('.mobile-input-area')?.classList.toggle('show-mobile-input-area');
-      }
+      document.querySelector('.mobile-input-area')?.classList.toggle('show-mobile-input-area');
    }
 
-   function handleNavUserPage(){
+   function handleNavUserPage() {
       router.push('/userpage')
    }
 
@@ -77,9 +75,9 @@ export const Header = () => {
                </button>
             </form>
             <FaSearch className="search-lupe-mobile" onClick={handleShowMobile} />
-            {user.name && user.lastname 
+            {user.name && user.lastname
                ? <img src={`${imageSrc}`} alt={`Foto de ${user.name}`} className="user-image-header"
-                  onClick={handleNavUserPage} title={`${user.name}`}/> 
+                  onClick={handleNavUserPage} title={`${user.name}`} />
                : <button className="login" onClick={handleGoLogin}>Login</button>
             }
          </nav>

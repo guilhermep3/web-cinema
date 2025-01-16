@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { MovieProvider } from "@/utils/movieContext";
 import { Providers } from "@/utils/provider";
 import { Header } from "@/components/header";
 import { UserProvider } from "@/utils/userContext";
+import "./globals.css";
 import "@/styles/response.css"
 
 export const metadata: Metadata = {

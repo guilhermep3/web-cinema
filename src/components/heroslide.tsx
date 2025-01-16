@@ -9,7 +9,6 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { MdLocalMovies } from "react-icons/md";
 
 export const HeroSlide = () => {
-   if (typeof window === "undefined") return ;
 
    const [movies, setMovies] = useState<MovieType[]>();
    const { data } = useSlideMovies();
@@ -43,9 +42,7 @@ export const HeroSlide = () => {
       })
    }
    function updateMargin(newSlide: number) {
-      if (typeof window !== "undefined") {
-         setNewMargin(newSlide * window.innerWidth);
-      }
+      setNewMargin(newSlide * window.innerWidth);
    }
    function handlesetSlide(index: number) {
       setCurrentSlide(index);
