@@ -1,8 +1,8 @@
 "use client";
 import { useUser } from "@/utils/userContext";
-import { FaUserCircle, FaInfoCircle } from "react-icons/fa";
+import { FaUserCircle, FaInfoCircle, FaTrash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useMovieContext } from "@/utils/movieContext";
 import { MovieType } from "@/types/MovieType";
 import "@/styles/userpage.css";
@@ -12,19 +12,43 @@ import "@/styles/response.css";
 const UserPage = () => {
    const router = useRouter();
    const { user, setUser, imageSrc, setImageSrc } = useUser();
-   const { savedMovies, setSelectedMovie } = useMovieContext()
+   const { savedMovies, setSelectedMovie, setSavedMovies } = useMovieContext();
+   const [ isModalVisible, setIsModalVisible ] = useState<boolean>(false);
 
-   if (!user || typeof document === 'undefined') return <div className="userpage-section"><p>Page not found</p></div>;
+   if (!user || typeof document === 'undefined'){
+      return (
+         <div className="page-not-found">
+            <div className="not-found-text">
+               <p>Não há nenhum filme selecionado.</p>
+               <p>Volte ao menu para selecionar um filme.</p>
+            </div>
+         </div>
+      );
+   }
 
-   if (user.name === '' && user.lastname === '') return <div className="userpage-section"><p>Page not found</p></div>;
+   if (user.name === '' && user.lastname === ''){
+      return (
+         <div className="page-not-found">
+            <div className="not-found-text">
+               <p>Não há uma conta cadastrada.</p>
+               <p>Faça login para ter acesso ao seu perfil.</p>
+            </div>
+         </div>
+      );
+   };
 
    function handleShowModal() {
       document.querySelector('.modal-container')?.classList.add('show-modal-container');
    };
 
+   function handleHideModal(){
+      document.querySelector('.modal-container')?.classList.remove('show-modal-container');
+   }
+
    function handleDeleteUser() {
       document.querySelector('.modal-container')?.classList.remove('show-modal-container');
       setUser({ name: '', lastname: '' });
+      setSavedMovies([])
       router.push('/')
    };
 
@@ -44,6 +68,10 @@ const UserPage = () => {
    function handleNavReadMore(movie: MovieType) {
       setSelectedMovie(movie)
       router.push('/readmore')
+   }
+
+   function handleDeleteSavedMovie(movieId: number){
+      setSavedMovies((prev: MovieType[]) => prev.filter(movie => movie.id !== movieId))
    }
 
    return (
@@ -79,9 +107,12 @@ const UserPage = () => {
                         <div className="savedmovie-info">
                            <div className="savedmovie-nameyear">
                               <span className="savedmovie-name">{movie.title}</span>
-                              <span className="savedmovie-year">{movie.release_date.slice(0, 4)}</span>
+                              <span className="savedmovie-year">({movie.release_date.slice(0, 4)})</span>
                            </div>
-                           <FaInfoCircle className="info-icon" onClick={() => handleNavReadMore(movie)} />
+                           <div className="savedmovie-buttons">
+                              <FaInfoCircle className="info-icon" onClick={() => handleNavReadMore(movie)} />
+                              <FaTrash className="delete-saved-movie" onClick={() => handleDeleteSavedMovie(movie.id)}/>
+                           </div>
                         </div>
                      </div>
                   ))}
@@ -92,7 +123,8 @@ const UserPage = () => {
             <div className="modal">
                <p className="modal-title">Excluir conta</p>
                <p className="modal-text">Tem certeza que deseja excluir sua conta? Você perderá todos seus dados.</p>
-               <button onClick={handleDeleteUser} style={{ backgroundColor: '#d30707' }}>EXCLUIR</button>
+               <button className="modal-back-btn" onClick={handleHideModal} style={{ backgroundColor: '#555' }}>Voltar</button>
+               <button className="modal-delete-btn" onClick={handleDeleteUser}>Excluir</button>
             </div>
          </div>
       </section>

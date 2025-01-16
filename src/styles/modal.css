@@ -38,6 +38,12 @@
    margin-top: 20px;
    border: none;
    border-radius: 6px;
-   background-color: #23238f;
    cursor: pointer;
+}
+.modal-back-btn{
+   background-color: var(--dark-blue2);
+   margin-right: 20px;
+}
+.modal-delete-btn{
+   background-color: var(--main-color);
 }

@@ -1,5 +1,5 @@
 "use client"
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
    user: {name: string; lastname: string},
@@ -9,8 +9,20 @@ type UserContextType = {
 }
 export const UserContext = createContext<UserContextType | null>(null);
 export const UserProvider = ({children}: {children: ReactNode}) => {
-   const [user, setUser] = useState<{name: string, lastname: string}>({name: 'Guilherme', lastname: 'Pereira'});
-   const [imageSrc, setImageSrc] = useState('/user-image.jpg');
+   const [user, setUser] = useState<{name: string, lastname: string}>({name: '', lastname: ''});
+   const [imageSrc, setImageSrc] = useState(() => {
+      const image = localStorage.getItem('userImg')
+      console.log(image)
+      if(image){
+         return image
+      } else {
+         return '/user-image.jpg';
+      }
+   });
+
+   useEffect(() => {
+      localStorage.setItem('userImg', imageSrc)
+   }, [imageSrc])
 
    return (
       <UserContext.Provider value={{user, setUser, imageSrc, setImageSrc}}>

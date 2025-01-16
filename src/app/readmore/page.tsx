@@ -10,11 +10,16 @@ import "@/styles/menu.css";
 import "@/styles/response.css";
 
 const ReadMore = () => {
-   const { selectedMovie, saveMovie, savedMovies } = useMovieContext();
+   const { selectedMovie, saveMovie, savedMovies, removeMovie } = useMovieContext();
 
    if (!selectedMovie) {
       return (
-         <Loading />
+         <div className="page-not-found">
+            <div className="not-found-text">
+               <p>Não há nenhum filme selecionado.</p>
+               <p>Volte ao menu para selecionar um filme.</p>
+            </div>
+         </div>
       );
    }
 
@@ -67,6 +72,10 @@ const ReadMore = () => {
       }
    }
 
+   function handleRemoveMovie(){
+      if(selectedMovie) removeMovie(selectedMovie.id)
+   }
+
    if (isMovieLoading || isReleaseLoading) return <Loading />;
 
    return (
@@ -110,7 +119,7 @@ const ReadMore = () => {
                   <div className="buttons-area">
                      <button className="watchBtn">ASSISTIR</button>
                      {savedMovies.some(movie => movie.id === selectedMovie.id)
-                        ? <button className="addBtn addBtn-hover" onClick={handleSaveMovie}>
+                        ? <button className="addBtn addBtn-hover" onClick={handleRemoveMovie}>
                            <FaCheck className="addBtn-icon" />Salvo
                         </button>
                         : <button className="addBtn addBtn-hover" onClick={handleSaveMovie}>

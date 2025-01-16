@@ -1,6 +1,5 @@
-/* Estilos gerais */
 .userpage-section {
-   margin-top: 150px;
+   margin-top: 120px;
    display: flex;
    justify-content: center;
 }
@@ -24,6 +23,7 @@
 .user-profile {
    display: flex;
    text-align: center;
+   width: 100%;
 }
 .user-image-area{
    display: flex;
@@ -49,13 +49,11 @@
    background-color: #52526b;
    cursor: pointer;
 }
-.profile-btn {
-   margin-top: 10px;
-   padding: 5px 10px;
-   background: #52526b;
-   border: none;
-   border-radius: 6px;
-   cursor: pointer;
+.user-info-right{
+   display: flex;
+   justify-content: space-between;
+   align-items: start;
+   width: 100%;
 }
 .username{
    font-size: 22px;
@@ -64,6 +62,8 @@
 .user-actions {
    display: flex;
    gap: 10px;
+   height: 100%;
+   align-items: flex-end;
 }
 .btnDelete, .btnEdit {
    padding: 8px 16px;
@@ -101,7 +101,7 @@
 .savedmovie {
    display: flex;
    align-items: center;
-   margin-bottom: 10px;
+   margin-bottom: 12px;
 }
 .savedmovie-nameyear{
    display: flex;
@@ -113,7 +113,7 @@
 }
 .savedmovie-year{
    font-size: 14px;
-   color: #e4e4e4;
+   color: #d6d6d6;
    margin-top: 5px;
 }
 .savedmovie-poster {
@@ -131,5 +131,16 @@
 .info-icon {
    font-size: 20px;
    color: #ffffff;
+   cursor: pointer;
+}
+.savedmovie-buttons{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+}
+.delete-saved-movie{
+   color: var(--main-color);
    cursor: pointer;
 }

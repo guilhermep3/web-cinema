@@ -333,3 +333,23 @@ footer a:hover{
   object-fit: cover;
   cursor: pointer;
 }
+.page-not-found{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  margin: 10px;
+  color: #ededed;
+}
+.not-found-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--dark-blue);
+}

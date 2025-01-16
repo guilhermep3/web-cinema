@@ -29,6 +29,10 @@
    .showSearch{
       width: 90%;
    }
+   .user-image-header{
+      width: 36px;
+      height: 36px;
+   }
    .hero-slider-area{
       height: auto;
    }
@@ -148,6 +152,9 @@
    }
    .readmore-info-left .buttons-area{
       margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
    }
    .readmore-overview{
       margin: 10px 5px;
@@ -167,5 +174,50 @@
    }
    .readmore-details .icon-details{
       font-size: 15px;
+   }
+   .user-details{
+      gap: 10px;
+   }
+   .userpage-container{
+      padding: 10px;
+   }
+   .file-label{
+      font-size: 14px;
+   }
+   .user-info-right{
+      flex-direction: column;
+   }
+   .btnDelete, .btnEdit {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+   }
+   .user-image {
+      width: 100px;
+      height: 100px;
+      border: 2px solid var(--light-blue);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+   .user-actions{
+      justify-content: flex-end;
+      width: 100%;
+   }
+   .user-details{
+      flex-direction: column;
+   }
+   .user-stats h2, .saved-movies h2{
+      font-size: 18px;
+   }
+   .user-stats p, .savedmovie-name{
+      font-size: 15px;
+   }
+   .savedmovie-poster{
+      margin-right: 8px;
+   }
+   .savedmovie-nameyear{
+      flex: 1;
    }
 }

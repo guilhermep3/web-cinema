@@ -3,12 +3,13 @@ import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
 import { MoviesList } from "@/components/movieslist";
-import "@/styles/search.css"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Footer } from "@/components/footer";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { Loading } from "@/components/loading";
+import "@/styles/search.css"
+import "@/styles/response.css";
 
 const SearchPage = () => {
    const searchParams = useSearchParams();
