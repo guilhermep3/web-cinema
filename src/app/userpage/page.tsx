@@ -5,9 +5,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useMovieContext } from "@/utils/movieContext";
 import { MovieType } from "@/types/MovieType";
-import "@/styles/userpage.css";
-import "@/styles/modal.css";
-import "@/styles/response.css";
 
 const UserPage = () => {
    const router = useRouter();

@@ -4,7 +4,6 @@ import { Providers } from "@/utils/provider";
 import { Header } from "@/components/header";
 import { UserProvider } from "@/utils/userContext";
 import "./globals.css";
-import "@/styles/response.css"
 
 export const metadata: Metadata = {
   title: "Web Cinema",
