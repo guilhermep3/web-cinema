@@ -8,9 +8,12 @@ import { Loading } from "@/components/loading";
 import "@/styles/readmore.css";
 import "@/styles/menu.css";
 import "@/styles/response.css";
+import "@/styles/modal.css";
+import { useUser } from "@/utils/userContext";
 
 const ReadMore = () => {
    const { selectedMovie, saveMovie, savedMovies, removeMovie } = useMovieContext();
+   const { user } = useUser();
 
    if (!selectedMovie) {
       return (
@@ -66,14 +69,22 @@ const ReadMore = () => {
    }, [selectedMovie?.release_date]);
 
    function handleSaveMovie() {
-      if (selectedMovie) {
-         saveMovie(selectedMovie)
-         console.log(selectedMovie)
+      if(user.name !== '' && user.lastname !== ''){         
+         if (selectedMovie) {
+            saveMovie(selectedMovie)
+            console.log(selectedMovie)
+         }
+      } else {
+         document.querySelector('.modal-container')?.classList.add('show-modal-container');
       }
    }
 
    function handleRemoveMovie(){
       if(selectedMovie) removeMovie(selectedMovie.id)
+   }
+
+   function handleCloseModal(){
+      document.querySelector('.modal-container')?.classList.remove('show-modal-container');
    }
 
    if (isMovieLoading || isReleaseLoading) return <Loading />;
@@ -137,6 +148,13 @@ const ReadMore = () => {
                </div>
             </div>
          </section>
+         <div className="modal-container">
+            <div className="modal">
+               <p className="modal-title">Erro ao salvar</p>
+               <p className="modal-text">Faça login para salvar seus filmes favoritos.</p>
+               <button onClick={handleCloseModal}>OK</button>
+            </div>
+         </div>
       </div>
    );
 };

@@ -25,6 +25,11 @@ function Home() {
    }, []);
 
    useEffect(() => {
+      setMovies(data?.results);
+      localStorage.setItem('page', page.toString());
+    }, [data]);
+
+   useEffect(() => {
       if (typeof window !== 'undefined') {
          localStorage.setItem('page', page.toString());
       }

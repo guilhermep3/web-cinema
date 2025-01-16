@@ -27,7 +27,6 @@ const Login = () => {
 
    function handleFormModal() {
       document.querySelector('.modal-container')?.classList.add('show-modal-container');
-
    }
 
    function handleGoUserPage() {

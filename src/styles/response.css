@@ -42,21 +42,25 @@
    }
    .hero-slide-left {
       width: 99%;
-      padding: 10px 15px;
+      padding: 10px;
       justify-content: end;
-      background: linear-gradient(270deg, #00000004, #00000046 90%);
+      background: linear-gradient(180deg, #00000004, #00000070 90%);
       margin-bottom: 0px;
+      padding-bottom: 0;
    }
    .hero-slide-left h1{
-      font-size: 30px;
+      font-size: 25px;
    }
    .hero-slide-infos, .readmore-details{
       font-size: 12px;
       flex-wrap: wrap;
       width: 100%;
    }
+   .hero-slide-infos span {
+      margin: 0 5px;
+   }
    .hero-debut{
-      padding: 4px 8px;
+      padding: 4px 6px;
    }
    .watchBtn {
       width: 100px;
@@ -64,6 +68,9 @@
       font-size: 16px;
       border-radius: 12px;
       margin-top: 5px;
+   }
+   .hero-slide-left .watchBtn{
+      display: none;
    }
    .hero-slide-btn-area {
       padding: 10px;
@@ -82,7 +89,7 @@
    }
    .hero-slide-btn-area span{
       font-size: 17px;
-      margin: 0 7px;
+      margin: 0 5px;
       border-radius: 50%;
       border: none;
       transition: all 0.3s;
@@ -126,6 +133,9 @@
    }
    .movie-infos{
       padding: 5px;
+   }
+   .movie-overview{
+      font-size: 12px;
    }
    .movie-overview, .readmore-btn{
       margin-bottom: -105px;

@@ -93,7 +93,7 @@ export const HeroSlide = () => {
                   <div className="hero-slide-left">
                      <h1>{movie.title}</h1>
                      <div className="hero-slide-infos">
-                        <p>{movie.vote_average.toString().slice(0, 3)} <FaStar className="icon-details icon-star" /></p>
+                        <p><FaStar className="icon-details icon-star" /> {movie.vote_average.toString().slice(0, 3)}</p>
                         <span>|</span>
                         <p className="hero-release-date"><FaCalendar className="icon-details" /> {formateDate(movie.release_date)}</p>
                         <span className="hero-release-date">|</span>

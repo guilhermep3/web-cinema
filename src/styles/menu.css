@@ -65,26 +65,12 @@
 .hero-slide{
    position: relative;
    background-position: center;
-   background-size: auto;
+   background-size: cover;
    background-repeat: no-repeat;
    display: flex;
    width: 100vw;
    height: 100vh;
    object-fit: cover;
-}
-.hero-slide-animation{
-   animation: zoomSlide 14s infinite linear
-}
-@keyframes zoomSlide {
-   0%{
-      background-size: 100%;
-   }
-   50%{
-      background-size: 110%;
-   }
-   100%{
-      background-size: 100%;
-   }
 }
 .hero-slide-infos{
    display: flex;
