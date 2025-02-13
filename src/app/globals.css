@@ -600,6 +600,23 @@ footer a:hover{
   padding-bottom: 4px;
   color: #ffffff;
 }
+.skeleton{
+  width: 250px;
+  height: 350px;
+  background-color: #333333;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .readmore-btn{
   font-size: 15px;
   padding: 5px;
@@ -730,6 +747,7 @@ footer a:hover{
   border-radius: 6px;
   cursor: pointer;
   color: #ffffff;
+  background-color: #292938;
 }
 .modal-back-btn{
   background-color: var(--dark-blue2);

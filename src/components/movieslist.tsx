@@ -3,23 +3,26 @@ import { MovieType } from "@/types/MovieType"
 import { StarsRating } from "./stars"
 import { useRouter } from "next/navigation"
 import { useMovieContext } from "@/utils/movieContext"
+import { Skeleton } from "./skeleton"
 
 type props = {
-   movie?: MovieType,
-   movies?: MovieType[]
+   movies?: MovieType[];
+   isLoading: boolean;
 }
-export const MoviesList = ({movie, movies}: props) => {
-   const router = useRouter()
-      const { setSelectedMovie } = useMovieContext();
+export const MoviesList = ({ movies, isLoading }: props) => {
+   const router = useRouter();
+   const { setSelectedMovie } = useMovieContext();
 
    function handleNavReadMore(movie: MovieType) {
-      setSelectedMovie(movie)
-      router.push('/readmore')
+      setSelectedMovie(movie);
+      router.push('/readmore');
    }
 
    return (
       <div className="movies-list">
-         {movies?.map((movie) => (
+         {isLoading || !movies
+         ? <Skeleton/>
+         : movies.map((movie) => (
             <div key={movie.id} className="movie" onClick={() => handleNavReadMore(movie)}>
                <div className="movie-poster">
                   <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />

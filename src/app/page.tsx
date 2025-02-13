@@ -4,7 +4,7 @@ import { MoviesList } from "@/components/movieslist";
 import { TopRatedMovies } from "@/components/toprated";
 import { MovieType } from "@/types/MovieType";
 import { useMovies } from "@/utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Footer } from "@/components/footer";
 
@@ -12,6 +12,8 @@ function Home() {
    const [movies, setMovies] = useState<MovieType[]>([]);
    const [page, setPage] = useState(1);
    const { data } = useMovies(page);
+   const sectionRef = useRef<HTMLInputElement>(null);
+   const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
       if (typeof window !== 'undefined') {
@@ -23,14 +25,20 @@ function Home() {
    }, []);
 
    useEffect(() => {
-      setMovies(data?.results);
-      localStorage.setItem('page', page.toString());
-    }, [data]);
+      setIsLoading(true);
+      setMovies([]);
+
+      if (data?.results) {
+         setMovies(data.results);
+         localStorage.setItem('page', page.toString());
+         setIsLoading(false);
+      }
+   }, [data]);
 
    useEffect(() => {
-      if (typeof window !== 'undefined') {
-         localStorage.setItem('page', page.toString());
-      }
+      localStorage.setItem('page', page.toString());
+      sectionRef.current?.scrollIntoView();
+      setIsLoading(true);
    }, [page]);
 
    function handlePrevBtn() {
@@ -47,13 +55,13 @@ function Home() {
             <section id="topRated" className="TopRated-section">
                <TopRatedMovies />
             </section>
-            <section id="allMovies" className="all-movies-section">
+            <section ref={sectionRef} id="allMovies" className="all-movies-section">
                <div className="movies-area">
                   <div className="movies-title-area">
                      <h1 className="movies-title">Todos os Filmes</h1>
                      <p className="page-number">Página: {page}</p>
                   </div>
-                  <MoviesList movies={movies} />
+                  <MoviesList movies={movies} isLoading={isLoading} />
                   <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
                   <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
                </div>
