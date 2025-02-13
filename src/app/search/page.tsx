@@ -37,7 +37,7 @@ const SearchPage = () => {
                <h1 className="search-result-title">Resultados para: <span>{query}</span></h1>
             </div>
             {isLoading && <p>Carregando...</p>}
-            <MoviesList movies={movies} />
+            <MoviesList movies={movies} isLoading={false} />
             {movies.length >= 20 &&
                <div className="buttons-area">
                   <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
