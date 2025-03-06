@@ -1,4 +1,5 @@
 "use client"
+import { Loading } from "@/components/loading";
 import { HeroSlide } from "@/components/heroslide";
 import { MoviesList } from "@/components/movieslist";
 import { TopRatedMovies } from "@/components/toprated";
@@ -15,6 +16,12 @@ function Home() {
    const sectionRef = useRef<HTMLInputElement>(null);
    const [isLoading, setIsLoading] = useState(true);
 
+   useEffect(() => {
+      if(data) {
+         setIsLoading(false)
+      }
+   });
+   
    useEffect(() => {
       if (typeof window !== 'undefined') {
          const savedPage = localStorage.getItem('page');
@@ -50,24 +57,27 @@ function Home() {
 
    return (
       <div>
-         <main>
-            <HeroSlide />
-            <section id="topRated" className="TopRated-section">
-               <TopRatedMovies />
-            </section>
-            <section ref={sectionRef} id="allMovies" className="all-movies-section">
-               <div className="movies-area">
-                  <div className="movies-title-area">
-                     <h1 className="movies-title">Todos os Filmes</h1>
-                     <p className="page-number">Página: {page}</p>
+         {isLoading && <Loading />}
+         {!isLoading &&
+            <main>
+               <HeroSlide />
+               <section id="topRated" className="TopRated-section">
+                  <TopRatedMovies />
+               </section>
+               <section ref={sectionRef} id="allMovies" className="all-movies-section">
+                  <div className="movies-area">
+                     <div className="movies-title-area">
+                        <h1 className="movies-title">Todos os Filmes</h1>
+                        <p className="page-number">Página: {page}</p>
+                     </div>
+                     <MoviesList movies={movies} isLoading={isLoading} />
+                     <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
+                     <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
                   </div>
-                  <MoviesList movies={movies} isLoading={isLoading} />
-                  <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
-                  <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
-               </div>
-            </section>
-         </main>
-         <Footer />
+               </section>
+            </main>
+         }
+         {!isLoading && <Footer />}
       </div>
    )
 }

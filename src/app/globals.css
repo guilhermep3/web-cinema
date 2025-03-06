@@ -554,6 +554,7 @@ footer a:hover{
 }
 .movie{
   width: 250px;
+  height: 375px;
   margin: 10px;
   border-radius: 10px;
   background-color: #000000;
@@ -564,6 +565,7 @@ footer a:hover{
   color: #ffffff;
 }
 .movie:hover .movie-poster img{
+  object-fit: cover;
   width: inherit;
   height: auto;
   opacity: 0.5;
@@ -1018,6 +1020,33 @@ footer a:hover{
   color: var(--main-color);
   cursor: pointer;
 }
+.loading-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #00000000;
+}
+.loading{
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border-top: 6px solid #bed307;
+  animation: loadingSpin 1s linear infinite;
+}
+@keyframes loadingSpin{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 
 /* RESPONSE */
 @media (max-width: 768px){
@@ -1069,6 +1098,7 @@ footer a:hover{
   }
   .hero-slide-left h1{
      font-size: 25px;
+     margin-bottom: 16px;
   }
   .hero-slide-infos, .readmore-details{
      font-size: 12px;
@@ -1093,7 +1123,7 @@ footer a:hover{
   }
   .hero-slide-btn-area {
      padding: 10px;
-     bottom: 440px;
+     bottom: 430px;
   }
   .hero-slide-btn{
      font-size: 20px;
@@ -1128,6 +1158,7 @@ footer a:hover{
   }
   .movie{
      width: 150px;
+     height: 225px;
      margin: 5px;
      border-radius: 10px;
      background-color: #000000;

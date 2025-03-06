@@ -14,18 +14,25 @@ export const TopRatedMovies = () => {
    const [leftMargin, setLeftMargin] = useState(0);
    const { setSelectedMovie } = useMovieContext();
 
+   useEffect(() => {
+      setMovies(data?.results);
+   }, [data]);
 
    useEffect(() => {
-      setMovies(data?.results)
-   }, [data])
+      if (!movies) return;
+
+   }, [movies]);
 
    function handleNavReadMore(movie: MovieType) {
-      setSelectedMovie(movie)
-      router.push('/readmore')
+      setSelectedMovie(movie);
+      router.push('/readmore');
    }
 
+   const movieWidth = window.innerWidth > 768 ? 250 : 150;
+   const margin = window.innerWidth > 768 ? 10 * 2 : 5 * 2;
+
    function handlePrevSlide() {
-      let scrollx = leftMargin + Math.round(window.innerWidth / 2);
+      let scrollx = leftMargin + Math.round(window.innerWidth / 2); //metade da largura da tela
       if(scrollx > 0){
          scrollx = 0
       }
@@ -37,17 +44,20 @@ export const TopRatedMovies = () => {
       if(movies){
       let scrollx = leftMargin - Math.round(window.innerWidth / 2);
          let moviesWidth = window.innerWidth > 768 
-            ? movies?.length * 260 
-            : movies?.length * 160;
+            ? movies.length * 260 
+            : movies.length * 160;
          if(window.innerWidth - moviesWidth > scrollx){
             window.innerWidth > 768 
                ? scrollx = (window.innerWidth - moviesWidth) -400
                : scrollx = (window.innerWidth - moviesWidth) -100
          }
          setLeftMargin(scrollx)
-         console.log(scrollx)
+         console.log("window.innerWidth: "+window.innerWidth)
+         console.log("moviesWidth: "+moviesWidth)
+         console.log("scrollx: "+scrollx)
       }
    }
+
 
    return (
       <>
@@ -56,10 +66,20 @@ export const TopRatedMovies = () => {
          </div>
          <div className="topRated-container">
             <div className="topRated-slide-btn-area">
-               <button className="topRated-slide-btn" onClick={handlePrevSlide}><FaArrowLeft /></button>
-               <button className="topRated-slide-btn" onClick={handleNextSlide}><FaArrowRight /></button>
+               <button
+                  className="topRated-slide-btn"
+                  onClick={handlePrevSlide}
+               >
+                  <FaArrowLeft />
+               </button>
+               <button
+                  className="topRated-slide-btn"
+                  onClick={handleNextSlide}
+               >
+                  <FaArrowRight />
+               </button>
             </div>
-            <div className="topRated-list" style={{ marginLeft: `${leftMargin}px`}}>
+            <div className="topRated-list" style={{ marginLeft: `${leftMargin}px` }}>
                {movies?.map((movie) => (
                   <div key={movie.id} className="movie" onClick={() => handleNavReadMore(movie)}>
                      <div className="movie-poster">
@@ -69,7 +89,9 @@ export const TopRatedMovies = () => {
                         <h2 className="movie-title">{movie.title}</h2>
                         <span>({movie.release_date.substring(0, 4)})</span>
                         <StarsRating rating={movie.vote_average} />
-                        <p className="movie-overview">{movie.overview ? movie.overview.substring(0, 90) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...</p>
+                        <p className="movie-overview">
+                           {movie.overview ? movie.overview.substring(0, 90) : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta dolor dolor, ut vulputate nulla cursus vel. Pellentesque'}...
+                        </p>
                         <button className="readmore-btn">Ver mais</button>
                      </div>
                   </div>
@@ -77,5 +99,5 @@ export const TopRatedMovies = () => {
             </div>
          </div>
       </>
-   )
-}
+   );
+};
