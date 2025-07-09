@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { MovieProvider } from "@/utils/movieContext";
-import { Providers } from "@/utils/provider";
-import { Header } from "@/components/header";
-import { UserProvider } from "@/utils/userContext";
 import "./globals.css";
+import { Providers } from "@/utils/provider";
+import { UserProvider } from "@/utils/userContext";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 export const metadata: Metadata = {
-  title: "Web Cinema",
-  description: "Site para ver dados de filmes",
+  title: "Web Cinema"
 };
 
 export default function RootLayout({
@@ -17,14 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body
+        className={` antialiased`}
+      >
         <Providers>
-          <MovieProvider>
-            <UserProvider>
+          <UserProvider>
+            <AppRouterCacheProvider>
               <Header />
               {children}
-            </UserProvider>
-          </MovieProvider>
+              <Footer />
+            </AppRouterCacheProvider>
+          </UserProvider>
         </Providers>
       </body>
     </html>

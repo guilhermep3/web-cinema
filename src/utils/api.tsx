@@ -1,11 +1,10 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios"
-const API_KEY = 'bb1f3dc43b70dc7c51b04df798084dff'
 
 export const GetMovies = async (page: number) => {
    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR',
          page: page
       }
@@ -15,16 +14,16 @@ export const GetMovies = async (page: number) => {
 export const GetMovieDetail = async (movieId: number) => {
    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR'
       }
    })
    return response.data;
 }
 export const GetReleaseDates = async (movieId: number) => {
-   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`,{
+   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR'
       }
    });
@@ -33,7 +32,7 @@ export const GetReleaseDates = async (movieId: number) => {
 export const GetTopRatedMovies = async () => {
    const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR'
       }
    })
@@ -42,7 +41,7 @@ export const GetTopRatedMovies = async () => {
 export const GetSlideMovies = async () => {
    const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing`, {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR'
       }
    });
@@ -51,7 +50,7 @@ export const GetSlideMovies = async () => {
 export const GetSearchedMovies = async (query: string, page: number) => {
    const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
       params: {
-         api_key: API_KEY,
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
          language: 'pt-BR',
          query: query,
          page: page
@@ -59,30 +58,44 @@ export const GetSearchedMovies = async (query: string, page: number) => {
    })
    return response.data
 }
+export const GetMovieVideos = async (movieId: number) => {
+   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+      params: {
+         api_key: process.env.NEXT_PUBLIC_API_KEY,
+         language: 'pt-BR'
+      }
+   });
+
+   return response.data.results;
+};
 
 export const useMovies = (page: number) => useQuery({
    queryKey: ['movies', page],
    queryFn: () => GetMovies(page),
    placeholderData: keepPreviousData
-})
+});
 export const useMovieDetails = (movieId: number) => useQuery({
-   queryKey: ['movieDetails',movieId],
+   queryKey: ['movieDetails', movieId],
    queryFn: () => GetMovieDetail(movieId)
-})
+});
 export const useReleaseDates = (movieId: number) => useQuery({
    queryKey: ['releaseDates', movieId],
    queryFn: () => GetReleaseDates(movieId)
-})
+});
 export const useTopRatedMovies = () => useQuery({
    queryKey: ['toprated'],
    queryFn: GetTopRatedMovies
-})
+});
 export const useSlideMovies = () => useQuery({
    queryKey: ['slideMovies'],
    queryFn: GetSlideMovies
-})
+});
 export const useSearchedMovies = (query: string, page: number) => useQuery({
-   queryKey: ['searched',query, page],
+   queryKey: ['searched', query, page],
    queryFn: () => GetSearchedMovies(query, page),
    placeholderData: keepPreviousData
-})
+});
+export const useMovieVideos = (movieId: number) => useQuery({
+   queryKey: ['movieVideos', movieId],
+   queryFn: () => GetMovieVideos(movieId)
+});

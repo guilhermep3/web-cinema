@@ -1,84 +1,57 @@
 "use client"
 import { Loading } from "@/components/loading";
-import { HeroSlide } from "@/components/heroslide";
-import { MoviesList } from "@/components/movieslist";
-import { TopRatedMovies } from "@/components/toprated";
+import { HeroSlide } from "@/components/layout/heroslide";
 import { MovieType } from "@/types/MovieType";
 import { useMovies } from "@/utils/api";
-import { useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { Footer } from "@/components/footer";
+import { AllMovies } from "@/components/layout/allMovies";
+import { TopRatedMoviesSwiper } from "@/components/layout/toprated-swiper";
 
-function Home() {
-   const [movies, setMovies] = useState<MovieType[]>([]);
-   const [page, setPage] = useState(1);
-   const { data } = useMovies(page);
-   const sectionRef = useRef<HTMLInputElement>(null);
-   const [isLoading, setIsLoading] = useState(true);
+export default function Home() {
+  const [movies, setMovies] = useState<MovieType[]>([]);
+  const [page, setPage] = useState(1);
+  const { data } = useMovies(page);
+  const [isLoading, setIsLoading] = useState(true);
 
-   useEffect(() => {
-      if(data) {
-         setIsLoading(false)
-      }
-   });
-   
-   useEffect(() => {
-      if (typeof window !== 'undefined') {
-         const savedPage = localStorage.getItem('page');
-         if (savedPage) {
-            setPage(parseInt(savedPage, 10));
-         }
-      }
-   }, []);
+  useEffect(() => {
+    if (data) {
+      setIsLoading(false)
+    }
+  });
 
-   useEffect(() => {
-      setIsLoading(true);
-      setMovies([]);
+  useEffect(() => {
+    const savedPage = localStorage.getItem('page');
+    if (savedPage) {
+      setPage(parseInt(savedPage, 10));
+    }
+  }, []);
 
-      if (data?.results) {
-         setMovies(data.results);
-         localStorage.setItem('page', page.toString());
-         setIsLoading(false);
-      }
-   }, [data]);
+  useEffect(() => {
+    setIsLoading(true);
+    setMovies([]);
 
-   useEffect(() => {
+    if (data?.results) {
+      setMovies(data.results);
       localStorage.setItem('page', page.toString());
-      sectionRef.current?.scrollIntoView();
-      setIsLoading(true);
-   }, [page]);
+      setIsLoading(false);
+    }
+  }, [data]);
 
-   function handlePrevBtn() {
-      setPage(page === 1 ? 1 : page - 1)
-   }
-   function handleNextBtn() {
-      setPage(page + 1)
-   }
-
-   return (
-      <div>
-         {isLoading && <Loading />}
-         {!isLoading &&
-            <main>
-               <HeroSlide />
-               <section id="topRated" className="TopRated-section">
-                  <TopRatedMovies />
-               </section>
-               <section ref={sectionRef} id="allMovies" className="all-movies-section">
-                  <div className="movies-area">
-                     <div className="movies-title-area">
-                        <h1 className="movies-title">Todos os Filmes</h1>
-                        <p className="page-number">Página: {page}</p>
-                     </div>
-                     <MoviesList movies={movies} isLoading={isLoading} />
-                     <button className="prev-next-btn" onClick={handlePrevBtn}><FaArrowLeft /></button>
-                     <button className="prev-next-btn" onClick={handleNextBtn}><FaArrowRight /></button>
-                  </div>
-               </section>
-            </main>
-         }
-         {!isLoading && <Footer />}
-      </div>
-   )
+  return (
+    <main>
+      {isLoading && <div className="w-full h-full min-h-screen flex justify-center items-center"><Loading /></div>}
+      {!isLoading &&
+        <div>
+          <HeroSlide />
+          <TopRatedMoviesSwiper />
+          <AllMovies movies={movies}
+            page={page} setPage={setPage}
+            isLoading={isLoading} setIsLoading={setIsLoading}
+          />
+        </div>
+      }
+      {!isLoading && <Footer />}
+    </main>
+  )
 }
-export default Home

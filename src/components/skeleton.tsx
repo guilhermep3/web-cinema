@@ -1,10 +1,6 @@
 export const Skeleton = () => {
 
-   return (
-      <>
-         {Array.from({length: 10}).map((_, index) => (
-            <div key={index} className="skeleton" style={{margin: '10px'}}></div>
-         ))}
-      </>
-   )
+  return (
+    <div className="w-40 h-64 bg-zinc-600 animate-pulse" style={{ margin: '10px' }}></div>
+  )
 }
