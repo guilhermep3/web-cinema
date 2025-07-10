@@ -1,6 +1,6 @@
 "use client"
 import { MovieType } from "@/types/MovieType";
-import { useSlideMovies } from "@/utils/api";
+import { useMovieDetails, useMovieGenres, useSlideMovies } from "@/utils/api";
 import { starStyle } from "@/utils/styles";
 import { ArrowLeft, ArrowRight, Calendar, ChartNoAxesCombined, Info, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,13 +9,12 @@ import { Button } from "../button";
 import { formateDate } from "@/utils/formatDate";
 
 export const HeroSlide = () => {
-
   const [movies, setMovies] = useState<MovieType[]>();
-  const { data } = useSlideMovies();
   const [newMargin, setNewMargin] = useState(0);
   let [currentSlide, setCurrentSlide] = useState(0);
-  let totalSlides = 5;
+  const { data } = useSlideMovies();
   const router = useRouter();
+  let totalSlides = 5;
 
   useEffect(() => {
     setMovies(data?.results.slice(0, 5))
@@ -66,28 +65,20 @@ export const HeroSlide = () => {
 
 
   return (
-    <div className="relative flex w-full h-full md:h-screen overflow-hidden">
-      <div className="flex-1 z-30 relative flex h-auto md:h-full transition-all duration-300"
+    <div className="relative flex w-full h-full min-h-96 md:h-screen overflow-hidden">
+      <div className="flex-1 z-30 relative flex h-auto md:h-full transition-all duration-300 mt-20 md:mt-0"
         style={{ marginLeft: `-${newMargin}px` }}
       >
         {movies?.map((movie) => (
           <div
-            className="relative bg-center bg-cover bg-no-repeat flex flex-col justify-center w-screen h-screen object-cover"
+            className="relative bg-center bg-cover bg-no-repeat flex flex-col justify-center w-screen h-full md:h-screen object-cover"
             key={movie.id}
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
           >
             <div className="absolute inset-0 bg-linear-to-r from-black/75 to-black/25 z-10"></div>
-            <div className="flex flex-col gap-6 p-4 md:p-20 z-30 max-w-3/5">
-              <div className="flex gap-4">
-                {['Ação', 'Aventura'].map((g: string) => (
-                  <React.Fragment key={g}>
-                    <span className="text-[var(--main-color)]">|</span>
-                    <p>{g}</p>
-                  </React.Fragment>
-                ))}
-              </div>
+            <div className="flex flex-col justify-end md:justify-center gap-4 md:gap-6 p-4 md:p-20 h-full z-30 md:max-w-3/5">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">{movie.title}</h1>
-              <p>{movie.overview}</p>
+              <p className="hidden md:block">{movie.overview}</p>
               <div className="flex items-center gap-3 md:gap-6">
                 <div className="flex items-center gap-1">
                   <Star className={starStyle} />
@@ -111,7 +102,7 @@ export const HeroSlide = () => {
 
         ))}
       </div>
-      <div className="absolute bottom-12 right-12 z-40 flex justify-center items-center">
+      <div className="absolute bottom-2 md:bottom-12 right-2 md:right-12 z-40 flex justify-center items-center">
         <button
           className="text-2xl p-2 border-none mx-1 bg-none text-white transition duration-300 cursor-pointer"
           onClick={handlePrevSlide}
