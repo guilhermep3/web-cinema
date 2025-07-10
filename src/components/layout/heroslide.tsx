@@ -1,5 +1,5 @@
 "use client"
-import { MovieType } from "@/types/MovieType";
+import { MovieType, NowPlayingType } from "@/types/MovieType";
 import { useMovieDetails, useMovieGenres, useSlideMovies } from "@/utils/api";
 import { starStyle } from "@/utils/styles";
 import { ArrowLeft, ArrowRight, Calendar, ChartNoAxesCombined, Info, Star } from "lucide-react";
@@ -9,16 +9,30 @@ import { Button } from "../button";
 import { formateDate } from "@/utils/formatDate";
 
 export const HeroSlide = () => {
-  const [movies, setMovies] = useState<MovieType[]>();
+  const [movies, setMovies] = useState<NowPlayingType[]>();
   const [newMargin, setNewMargin] = useState(0);
   let [currentSlide, setCurrentSlide] = useState(0);
   const { data } = useSlideMovies();
+  const { data: genres } = useMovieGenres();
   const router = useRouter();
   let totalSlides = 5;
 
+  const [genreMap, setGenreMap] = useState<Record<number, string>>({});
+
   useEffect(() => {
     setMovies(data?.results.slice(0, 5))
-  }, [data])
+  }, [data]);
+
+  useEffect(() => {
+    if (genres && movies) {
+      genres.forEach((genre: { id: number; name: string; }) => {
+        genreMap[genre.id] = genre.name;
+      })
+    }
+    console.log("genres", genres)
+    console.log("genreMap", genreMap)
+
+  }, [movies])
 
   function handleNavReadMore(movie: MovieType) {
     router.push(`/readmore/${movie.id}`)
@@ -77,6 +91,13 @@ export const HeroSlide = () => {
           >
             <div className="absolute inset-0 bg-linear-to-r from-black/75 to-black/25 z-10"></div>
             <div className="flex flex-col justify-end md:justify-center gap-4 md:gap-6 p-4 md:p-20 h-full z-30 md:max-w-3/5">
+              <div className="flex gap-2 flex-wrap">
+                {movie.genre_ids.map((genreId) => (
+                  <span key={genreId} className="px-2 py-1 rounded text-sm text-white">
+                    {genreMap[genreId] ?? 'Gênero'}
+                  </span>
+                ))}
+              </div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">{movie.title}</h1>
               <p className="hidden md:block">{movie.overview}</p>
               <div className="flex items-center gap-3 md:gap-6">
@@ -99,7 +120,6 @@ export const HeroSlide = () => {
               <Button label="Ver mais" onClick={`/readmore/${movie.id}`} />
             </div>
           </div>
-
         ))}
       </div>
       <div className="absolute bottom-2 md:bottom-12 right-2 md:right-12 z-40 flex justify-center items-center">

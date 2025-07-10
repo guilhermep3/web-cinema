@@ -1,5 +1,5 @@
 import { MovieType } from "@/types/MovieType";
-import { Ban, Calendar, CircleDollarSign, Clock, Star, Youtube } from "lucide-react";
+import { Ban, Calendar, ChartNoAxesCombined, CircleDollarSign, Clock, Star, Youtube } from "lucide-react";
 import { starStyle } from "@/utils/styles";
 import { formateDate } from "@/utils/formatDate";
 import { InfoBox } from "../infoBox";
@@ -31,7 +31,7 @@ export const ReadMoreInfos = ({ movie }: props) => {
   return (
     <div className="flex justify-between items-center flex-col lg:flex-row gap-10 sm:gap-6 p-3">
       <div className="flex flex-col items-start gap-6 flex-1 w-full md:w-fit">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center gap-5">
             <h1 className="text-lg sm:text-2xl md:text-4xl font-bold">{movie.title}</h1>
             <div className="flex items-center gap-1">
@@ -47,6 +47,15 @@ export const ReadMoreInfos = ({ movie }: props) => {
                 {index < movie.genres.length - 1 && <span>|</span>}
               </span>
             ))}
+          </div>
+          <div className="flex gap-6 items-center mt-4">
+            <p className="px-3 py-1 bg-red-600">
+              {movie.adult ? '+18' : 'Livre'}
+            </p>
+            <div className="flex items-center gap-1 md:gap-2" title="Popularidade">
+              <ChartNoAxesCombined className="stroke-green-500" />
+              <p>Popularidade: <span className="text-green-200">{movie.popularity.toString().slice(0, 3)}</span></p>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 w-full sm:w-fit">
