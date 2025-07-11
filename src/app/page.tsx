@@ -1,24 +1,23 @@
 "use client"
 import { Loading } from "@/components/loading";
 import { HeroSlide } from "@/components/layout/heroslide";
-import { MovieType } from "@/types/MovieType";
-import { useMovies } from "@/utils/api";
+import { useMovies, useNowPlaying, useTopRatedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
-import { Footer } from "@/components/footer";
 import { AllMovies } from "@/components/layout/allMovies";
-import { TopRatedMoviesSwiper } from "@/components/layout/toprated-swiper";
+import { MovieList } from "@/components/layout/movieList";
 
 export default function Home() {
-  const [movies, setMovies] = useState<MovieType[]>([]);
   const [page, setPage] = useState(1);
-  const { data } = useMovies(page);
+  const { data: movies } = useMovies(page);
   const [isLoading, setIsLoading] = useState(true);
+  const { data: topRated } = useTopRatedMovies();
+  const { data: nowPlaying } = useNowPlaying();
 
   useEffect(() => {
-    if (data) {
+    if (movies) {
       setIsLoading(false)
     }
-  });
+  }, []);
 
   useEffect(() => {
     const savedPage = localStorage.getItem('page');
@@ -28,15 +27,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    setMovies([]);
 
-    if (data?.results) {
-      setMovies(data.results);
+    if (movies) {
       localStorage.setItem('page', page.toString());
       setIsLoading(false);
     }
-  }, [data]);
+  }, [movies]);
 
   return (
     <main>
@@ -44,14 +40,16 @@ export default function Home() {
       {!isLoading &&
         <div>
           <HeroSlide />
-          <TopRatedMoviesSwiper />
+          <div className="mt-14">
+            <MovieList title="Os mais bem avaliados" movies={topRated} />
+            <MovieList title="Lanaçados recentemente" movies={nowPlaying!} />
+          </div>
           <AllMovies movies={movies}
             page={page} setPage={setPage}
             isLoading={isLoading} setIsLoading={setIsLoading}
           />
         </div>
       }
-      {!isLoading && <Footer />}
     </main>
   )
 }

@@ -1,19 +1,20 @@
 "use client";
-import { useMovieDetails } from "@/utils/api";
+import { useMovieCast, useMovieDetails } from "@/utils/api";
 import { Loading } from "@/components/loading";
 import { ReadMoreBanner } from "@/components/layout/readmore-banner";
 import { ReadMoreInfos } from "@/components/layout/readmore-infos";
 import ReadMoreTabs from "@/components/layout/readmore-tabs";
 import { useParams } from "next/navigation";
-import { MovieType } from "@/types/MovieType";
 import { useEffect, useState } from "react";
 
 const ReadMore = () => {
   const { id } = useParams();
   const movieId = Number(id);
   const [isDelayed, setIsDelayed] = useState(true);
-
+  
+  const { data: cast, } = useMovieCast(movieId || 1);
   const { data: movie, isLoading } = useMovieDetails(movieId || 1);
+  console.log("cast", cast)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,7 +28,7 @@ const ReadMore = () => {
     return <div className="w-full min-h-[400px] flex justify-center items-center"><Loading /></div>;
   }
 
-  if (!movie) {
+  if (!movie || !cast) {
     return (
       <div className="pt-32 min-h-[400px] w-full flex justify-center items-center">
         <div>
@@ -43,7 +44,7 @@ const ReadMore = () => {
       <div className="container mx-auto w-full flex flex-col gap-6 md:gap-12">
         <ReadMoreBanner movie={movie} />
         <ReadMoreInfos movie={movie} />
-        <ReadMoreTabs movie={movie} />
+        <ReadMoreTabs movie={movie} cast={cast.slice(0, 12)} />
       </div>
     </main>
   );

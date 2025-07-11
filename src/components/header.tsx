@@ -3,7 +3,7 @@ import { flexCenter } from "@/utils/styles";
 import { useUser } from "@/utils/userContext";
 import { Search, Send, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Header = () => {
   const { user, setUser, imageSrc } = useUser();
@@ -12,6 +12,7 @@ export const Header = () => {
   const [scrollYActive, setScrollYActive] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [searchMobileActive, setSearchMobileActive] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,8 +69,14 @@ export const Header = () => {
           `}
       >
         <Search className={`stroke-2 w-5 cursor-pointer transition-all duration-300 mr-2 ${searchActive && 'w-4 text-zinc-400'}`}
-          onClick={() => setSearchActive((prev) => !prev)} />
+          onClick={() => {
+            setSearchActive((prev) => !prev)
+            if(!searchActive && inputRef.current){
+              inputRef.current.focus()
+            }
+          }} />
         <input type="search"
+          ref={inputRef}
           className={`relative outline-none border-b-2 border-transparent border-none transition-all duration-300
               ${searchActive ? 'opacity-100 max-w-64 border-zinc-800 px-3 py-1' : 'opacity-0 max-w-0 p-0'}
             `}

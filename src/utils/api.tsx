@@ -1,3 +1,4 @@
+import { MovieType, NowPlayingType } from "@/types/MovieType";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios"
 
@@ -9,7 +10,7 @@ export const GetMovies = async (page: number) => {
       page: page
     }
   });
-  return response.data;
+  return response.data.results;
 }
 
 export const GetMovieDetail = async (movieId: number) => {
@@ -22,18 +23,18 @@ export const GetMovieDetail = async (movieId: number) => {
   return response.data;
 }
 
-export const GetReleaseDates = async (movieId: number) => {
-  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates`, {
+export const GetTopRatedMovies = async () => {
+  const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
     params: {
       api_key: process.env.NEXT_PUBLIC_API_KEY,
       language: 'pt-BR'
     }
-  });
-  return response.data;
+  })
+  return response.data.results;
 }
 
-export const GetTopRatedMovies = async () => {
-  const response = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
+export const GetUpcomingMovies = async () => {
+  const response = await axios.get(`https://api.themoviedb.org/3/movie/upcoming`, {
     params: {
       api_key: process.env.NEXT_PUBLIC_API_KEY,
       language: 'pt-BR'
@@ -42,14 +43,14 @@ export const GetTopRatedMovies = async () => {
   return response.data;
 }
 
-export const GetSlideMovies = async () => {
+export const GetNowPlaying = async () => {
   const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing`, {
     params: {
       api_key: process.env.NEXT_PUBLIC_API_KEY,
       language: 'pt-BR'
     }
   });
-  return response.data
+  return response.data.results;
 }
 
 export const GetSearchedMovies = async (query: string, page: number) => {
@@ -63,7 +64,7 @@ export const GetSearchedMovies = async (query: string, page: number) => {
   })
   return response.data
 }
-export const GetMovieVideos = async (movieId: number) => {
+export const GetMoviesVideos = async (movieId: number) => {
   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
     params: {
       api_key: process.env.NEXT_PUBLIC_API_KEY,
@@ -74,7 +75,7 @@ export const GetMovieVideos = async (movieId: number) => {
   return response.data.results;
 }
   ;
-export const GetMovieGenres = async () => {
+export const GetMoviesGenres = async () => {
   const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list`, {
     params: {
       api_key: process.env.NEXT_PUBLIC_API_KEY,
@@ -83,6 +84,17 @@ export const GetMovieGenres = async () => {
   })
 
   return response.data.genres;
+}
+
+export const GetMoviesCast = async (movieId: number) => {
+  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
+    params: {
+      api_key: process.env.NEXT_PUBLIC_API_KEY,
+      language: 'pt-BR'
+    }
+  })
+
+  return response.data.cast;
 }
 
 export const useMovies = (page: number) => useQuery({
@@ -96,19 +108,19 @@ export const useMovieDetails = (movieId: number) => useQuery({
   queryFn: () => GetMovieDetail(movieId)
 });
 
-export const useReleaseDates = (movieId: number) => useQuery({
-  queryKey: ['releaseDates', movieId],
-  queryFn: () => GetReleaseDates(movieId)
-});
-
 export const useTopRatedMovies = () => useQuery({
   queryKey: ['toprated'],
   queryFn: GetTopRatedMovies
 });
 
-export const useSlideMovies = () => useQuery({
+export const useUpcomingMovies = () => useQuery({
+  queryKey: ['upcoming'],
+  queryFn: () => GetUpcomingMovies()
+})
+
+export const useNowPlaying = () => useQuery<NowPlayingType[]>({
   queryKey: ['slideMovies'],
-  queryFn: GetSlideMovies
+  queryFn: GetNowPlaying
 });
 
 export const useSearchedMovies = (query: string, page: number) => useQuery({
@@ -117,12 +129,17 @@ export const useSearchedMovies = (query: string, page: number) => useQuery({
   placeholderData: keepPreviousData
 });
 
-export const useMovieVideos = (movieId: number) => useQuery({
+export const useMoviesVideos = (movieId: number) => useQuery({
   queryKey: ['movieVideos', movieId],
-  queryFn: () => GetMovieVideos(movieId)
+  queryFn: () => GetMoviesVideos(movieId)
 });
 
-export const useMovieGenres = () => useQuery({
+export const useMoviesGenres = () => useQuery({
   queryKey: ['genres'],
-  queryFn: () => GetMovieGenres()
-})
+  queryFn: () => GetMoviesGenres()
+});
+
+export const useMovieCast = (movieId: number) => useQuery({
+  queryKey: ['credits', movieId],
+  queryFn: () => GetMoviesCast(movieId)
+});

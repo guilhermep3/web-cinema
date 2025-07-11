@@ -3,13 +3,13 @@ import { Ban, Calendar, ChartNoAxesCombined, CircleDollarSign, Clock, Star, Yout
 import { starStyle } from "@/utils/styles";
 import { formateDate } from "@/utils/formatDate";
 import { InfoBox } from "../infoBox";
-import { useMovieVideos } from "@/utils/api";
+import { useMoviesVideos } from "@/utils/api";
 
 type props = {
   movie: MovieType;
 }
 export const ReadMoreInfos = ({ movie }: props) => {
-  const { data: videos } = useMovieVideos(movie.id || 0);
+  const { data: videos } = useMoviesVideos(movie.id || 0);
 
   function convertMinHours(runtime: number) {
     const hours = Math.floor(runtime / 60);
@@ -69,11 +69,11 @@ export const ReadMoreInfos = ({ movie }: props) => {
           />
           <InfoBox title="Receita"
             icon={<CircleDollarSign className="text-green-500" />}
-            label={`$ ${movie.revenue.toLocaleString('en-US')}`}
+            label={movie.revenue !== 0 ? `$ ${movie.revenue.toLocaleString('en-US')}` : 'Desconhecido'}
           />
           <InfoBox title="Orçamento"
             icon={<CircleDollarSign className="text-green-500" />}
-            label={`$ ${movie.budget.toLocaleString('en-US')}`}
+            label={movie.revenue !== 0 ? `$ ${movie.budget.toLocaleString('en-US')}` : 'Desconhecido'}
           />
         </div>
       </div>

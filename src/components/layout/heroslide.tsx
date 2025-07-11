@@ -1,6 +1,6 @@
 "use client"
-import { MovieType, NowPlayingType } from "@/types/MovieType";
-import { useMovieDetails, useMovieGenres, useSlideMovies } from "@/utils/api";
+import { MovieType } from "@/types/MovieType";
+import { useMoviesGenres, useNowPlaying } from "@/utils/api";
 import { starStyle } from "@/utils/styles";
 import { ArrowLeft, ArrowRight, Calendar, ChartNoAxesCombined, Info, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,30 +9,26 @@ import { Button } from "../button";
 import { formateDate } from "@/utils/formatDate";
 
 export const HeroSlide = () => {
-  const [movies, setMovies] = useState<NowPlayingType[]>();
   const [newMargin, setNewMargin] = useState(0);
   let [currentSlide, setCurrentSlide] = useState(0);
-  const { data } = useSlideMovies();
-  const { data: genres } = useMovieGenres();
+  const { data: movies } = useNowPlaying();
+  const { data: genres } = useMoviesGenres();
   const router = useRouter();
   let totalSlides = 5;
 
   const [genreMap, setGenreMap] = useState<Record<number, string>>({});
 
   useEffect(() => {
-    setMovies(data?.results.slice(0, 5))
-  }, [data]);
-
-  useEffect(() => {
     if (genres && movies) {
+      const updatedGenreMap = { ...genreMap };
       genres.forEach((genre: { id: number; name: string; }) => {
-        genreMap[genre.id] = genre.name;
+        updatedGenreMap[genre.id] = genre.name;
       })
-    }
-    console.log("genres", genres)
-    console.log("genreMap", genreMap)
 
-  }, [movies])
+      setGenreMap(updatedGenreMap);
+    };
+
+  }, [movies, genres])
 
   function handleNavReadMore(movie: MovieType) {
     router.push(`/readmore/${movie.id}`)
@@ -83,7 +79,7 @@ export const HeroSlide = () => {
       <div className="flex-1 z-30 relative flex h-auto md:h-full transition-all duration-300 mt-20 md:mt-0"
         style={{ marginLeft: `-${newMargin}px` }}
       >
-        {movies?.map((movie) => (
+        {movies?.slice(0, 5)?.map((movie) => (
           <div
             className="relative bg-center bg-cover bg-no-repeat flex flex-col justify-center w-screen h-full md:h-screen object-cover"
             key={movie.id}
@@ -91,11 +87,12 @@ export const HeroSlide = () => {
           >
             <div className="absolute inset-0 bg-linear-to-r from-black/75 to-black/25 z-10"></div>
             <div className="flex flex-col justify-end md:justify-center gap-4 md:gap-6 p-4 md:p-20 h-full z-30 md:max-w-3/5">
-              <div className="flex gap-2 flex-wrap">
-                {movie.genre_ids.map((genreId) => (
-                  <span key={genreId} className="px-2 py-1 rounded text-sm text-white">
-                    {genreMap[genreId] ?? 'Gênero'}
-                  </span>
+              <div className="flex gap-3 flex-wrap">
+                {movie.genre_ids.map((genreId, index) => (
+                  <div key={genreId} className="flex gap-3 rounded text-sm text-white">
+                    <p>{genreMap[genreId]}</p>
+                    {genreMap[genreId] && index < movie.genre_ids.length - 1 && <span>|</span>}
+                  </div>
                 ))}
               </div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">{movie.title}</h1>

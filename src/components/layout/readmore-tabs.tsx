@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { MovieType } from '@/types/MovieType';
+import { CastType } from '@/types/castType';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -35,8 +36,9 @@ function a11yProps(index: number) {
 
 type props = {
   movie: MovieType;
+  cast: CastType[];
 }
-export default function ReadMoreTabs({ movie }: props) {
+export default function ReadMoreTabs({ movie, cast }: props) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -55,10 +57,21 @@ export default function ReadMoreTabs({ movie }: props) {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <p className='text-sm md:text-base'>{movie.overview}</p>
+          <p className='text-sm md:text-base'>
+            {movie.overview && movie.overview.length > 10 ? movie.overview : 'Não há descrição para este filme.'}
+          </p>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <p className="text-zinc-600">Em breve...</p>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+            {cast.map((i) => (
+              <div className='flex justify-center items-center flex-col gap-1'>
+                <img src={`https://image.tmdb.org/t/p/w200${i.profile_path}`} alt={i.name}
+                  className='w-36 sm:w-40 h-48 sm:h-52 object-cover bg-zinc-800'
+                />
+                <p key={i.id}>{i.name}</p>
+              </div>
+            ))}
+          </div>
         </CustomTabPanel>
       </Box>
     </div>

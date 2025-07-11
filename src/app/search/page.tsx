@@ -3,7 +3,6 @@ import { useSearchedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { MovieType } from "@/types/MovieType";
 import { MoviesList } from "@/components/movieslist";
-import { Footer } from "@/components/footer";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { Loading } from "@/components/loading";
@@ -37,7 +36,6 @@ const SearchPage = () => {
           <PrevNextButtons page={page} setPage={setPage} />
         }
       </div>
-      <Footer />
     </section>
   )
 }

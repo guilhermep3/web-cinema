@@ -15,7 +15,7 @@ export const Movie = ({ movie }: props) => {
   }
 
   return (
-    <div className="relative group w-40 sm:w-44 h-fit mb-4 hover:scale-110 transition-all duration-300 p-2 md:p-4 cursor-pointer
+    <div className="relative group w-40 sm:w-44 h-fit mb-4 hover:scale-110 transition-all duration-300 p-2 md:p-4 cursor-pointer mx-auto
       before:absolute before:inset-0 hover:before:bg-zinc-800 before:-z-10 before:transition-all before:duration-300"
       onClick={() => handleNavReadMore(movie)}
     >

@@ -1,7 +1,6 @@
 "use client"
-import { MovieType } from "@/types/MovieType";
+import { MovieType, NowPlayingType } from "@/types/MovieType";
 import { useEffect, useState } from "react";
-import { useTopRatedMovies } from "@/utils/api";
 import { Movie } from "../movie";
 import { movieSectionTitleStyle } from "@/utils/styles";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,35 +9,30 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { A11y, EffectCube, Navigation, Scrollbar } from "swiper/modules";
 
-export const TopRatedMoviesSwiper = () => {
-  const { data } = useTopRatedMovies();
-  const [movies, setMovies] = useState<MovieType[]>();
+type props = {
+  movies: MovieType[] | NowPlayingType[];
+  title: string;
+}
+export const MovieList = ({ movies, title }: props) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     function checkMobile() {
-      setIsMobile(window.innerWidth < 768 ? true : false)
+      setIsMobile(window.innerWidth < 768);
     }
-    window.removeEventListener('resize', checkMobile);
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      window.addEventListener('resize', checkMobile)
-    }
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
-  useEffect(() => {
-    setMovies(data?.results);
-  }, [data]);
-
-  useEffect(() => {
-    if (!movies) return;
-
-  }, [movies]);
-
   return (
-    <section id="topRated" className="container mx-auto py-10">
+    <section id="topRated" className="container mx-auto">
       <div className="flex justify-start">
-        <h1 className={movieSectionTitleStyle}>Os mais bem avaliados</h1>
+        <h1 className={movieSectionTitleStyle}>{title}</h1>
       </div>
       <div className="relative w-full flex justify-start mx-auto pt-4 px-1 overflow-hidden">
         <Swiper
@@ -67,7 +61,7 @@ export const TopRatedMoviesSwiper = () => {
             },
           }}
         >
-          {movies?.map((movie) => (
+          {movies?.map((movie: MovieType) => (
             <SwiperSlide key={movie.id} className="pt-4 flex justify-center items-center">
               <Movie key={movie.id} movie={movie} />
             </SwiperSlide>
