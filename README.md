@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web-Cinema
 
-## Getting Started
+Web Cinema é uma aplicação web desenvolvida com Next.js que consome a API da TMDB (The Movie Database) usando Axios para exibir informações sobre filmes.
 
-First, run the development server:
+<img width="1345" height="757" alt="Image" src="https://github.com/user-attachments/assets/12742101-213c-4a90-88ae-bbc013d0bfa2" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Sessões
+- Banner interativo com scroll
+- Mais bem avaliados
+- Lançados recentementes
+- Todos os filmes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias e Bibliotecas utilizadas
+- **Next.js**: Framework React para renderização híbrida (SSR/SSG)
+- **Typescript**: Superset do JavaScript que adiciona tipagem estática e maior segurança ao código
+- **Tailwind**: Framework utilitário para estilização rápida e responsiva com classes utilitárias
+- **Axios**: Requisições HTTP para consumir a API da TMDB
+- **Swiper**: Carroséis prontos e responsiveis
+- **Shadcn**: Componentes de interface prontos
+- **Lucide Dev**: Para ícones
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Projeto desenvolvido por <a href="https://github.com/guilhermep3/web-cinema" target="_blank">Guilherme Pereira</a>
