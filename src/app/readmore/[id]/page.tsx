@@ -25,7 +25,7 @@ const ReadMore = () => {
   }, []);
 
   if (isLoading || isDelayed) {
-    return <div className="w-full min-h-[400px] flex justify-center items-center"><Loading /></div>;
+    return <div className="w-full min-h-screen flex justify-center items-center"><Loading /></div>;
   }
 
   if (!movie || !cast) {
@@ -44,7 +44,7 @@ const ReadMore = () => {
       <div className="container mx-auto w-full flex flex-col gap-6 md:gap-12">
         <ReadMoreBanner movie={movie} />
         <ReadMoreInfos movie={movie} />
-        <ReadMoreTabs movie={movie} cast={cast.slice(0, 12)} />
+        <ReadMoreTabs movie={movie} cast={cast.slice(0, 16)} />
       </div>
     </main>
   );

@@ -73,7 +73,6 @@ export const HeroSlide = () => {
     return () => clearInterval(interval);
   }, [currentSlide]);
 
-
   return (
     <div className="relative flex w-full h-full min-h-96 md:h-screen overflow-hidden">
       <div className="flex-1 z-30 relative flex h-auto md:h-full transition-all duration-300 mt-20 md:mt-0"
@@ -128,7 +127,7 @@ export const HeroSlide = () => {
         </button>
         {Array.from({ length: totalSlides }).map((i, index) => (
           <span key={index}
-            className={`${index === currentSlide ? 'text-4xl font-bold text-[var(--main-color)]' : 'text-xl'} mx-1 transition-all duration-300`}
+            className={`${index === currentSlide ? 'text-4xl font-bold text-[var(--main-color)]' : 'text-xl'} mx-1 transition-all duration-300 cursor-pointer`}
             onClick={() => handlesetSlide(index)}
           >
             {index + 1}

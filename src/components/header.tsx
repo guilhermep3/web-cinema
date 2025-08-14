@@ -5,8 +5,31 @@ import { Search, Send, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+const headerLinks = [
+  {
+    id: 1,
+    name: 'Início',
+    href: '#',
+  },
+  {
+    id: 2,
+    name: 'Melhores',
+    href: '#topRated',
+  },
+  {
+    id: 3,
+    name: 'Recentes',
+    href: '#recents',
+  },
+  {
+    id: 4,
+    name: 'Todos',
+    href: '#allMovies',
+  }
+]
+
 export const Header = () => {
-  const { user, setUser, imageSrc } = useUser();
+  const { user, imageSrc } = useUser();
   const router = useRouter();
   const [search, setSearch] = useState<string>();
   const [scrollYActive, setScrollYActive] = useState(false);
@@ -51,15 +74,11 @@ export const Header = () => {
       </div>
       <nav className="flex justify-end items-center flex-1 px-4 md:px-10 z-40">
         <ul className="hidden md:flex">
-          <li className="list-none px-5">
-            <a className="relative pb-2" href="#">Início</a>
-          </li>
-          <li className="list-none px-5">
-            <a className="relative pb-2" href="#topRated">Melhores</a>
-          </li>
-          <li className="list-none px-5">
-            <a className="relative pb-2" href="#allMovies">Todos</a>
-          </li>
+          {headerLinks.map((i) => (
+            <li key={i.id} className="list-none px-5">
+              <a className="relative pb-2" href={i.href}>{i.name}</a>
+            </li>
+          ))}
         </ul>
       </nav>
       <form
@@ -71,7 +90,7 @@ export const Header = () => {
         <Search className={`stroke-2 w-5 cursor-pointer transition-all duration-300 mr-2 ${searchActive && 'w-4 text-zinc-400'}`}
           onClick={() => {
             setSearchActive((prev) => !prev)
-            if(!searchActive && inputRef.current){
+            if (!searchActive && inputRef.current) {
               inputRef.current.focus()
             }
           }} />

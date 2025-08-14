@@ -41,8 +41,8 @@ export default function Home() {
         <div>
           <HeroSlide />
           <div className="mt-14">
-            <MovieList title="Os mais bem avaliados" movies={topRated} />
-            <MovieList title="Lanaçados recentemente" movies={nowPlaying!} />
+            <MovieList id="topRated" title="Os mais bem avaliados" movies={topRated} />
+            <MovieList id="recents" title="Lanaçados recentemente" movies={nowPlaying!} />
           </div>
           <AllMovies movies={movies}
             page={page} setPage={setPage}

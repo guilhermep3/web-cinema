@@ -67,13 +67,13 @@ export const ReadMoreInfos = ({ movie }: props) => {
             icon={<Calendar className="fill-blue-950 stroke-blue-300" />}
             label={formateDate(movie.release_date)}
           />
-          <InfoBox title="Receita"
-            icon={<CircleDollarSign className="text-green-500" />}
-            label={movie.revenue !== 0 ? `$ ${movie.revenue.toLocaleString('en-US')}` : 'Desconhecido'}
-          />
           <InfoBox title="Orçamento"
             icon={<CircleDollarSign className="text-green-500" />}
             label={movie.revenue !== 0 ? `$ ${movie.budget.toLocaleString('en-US')}` : 'Desconhecido'}
+          />
+          <InfoBox title="Receita"
+            icon={<CircleDollarSign className="text-green-500" />}
+            label={movie.revenue !== 0 ? `$ ${movie.revenue.toLocaleString('en-US')}` : 'Desconhecido'}
           />
         </div>
       </div>

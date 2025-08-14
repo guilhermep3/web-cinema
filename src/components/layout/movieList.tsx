@@ -12,8 +12,9 @@ import { A11y, EffectCube, Navigation, Scrollbar } from "swiper/modules";
 type props = {
   movies: MovieType[] | NowPlayingType[];
   title: string;
+  id: string;
 }
-export const MovieList = ({ movies, title }: props) => {
+export const MovieList = ({ movies, title, id }: props) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const MovieList = ({ movies, title }: props) => {
   }, []);
 
   return (
-    <section id="topRated" className="container mx-auto">
+    <section id={id} className="container mx-auto">
       <div className="flex justify-start">
         <h1 className={movieSectionTitleStyle}>{title}</h1>
       </div>

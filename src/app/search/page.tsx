@@ -6,7 +6,6 @@ import { MoviesList } from "@/components/movieslist";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { Loading } from "@/components/loading";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PrevNextButtons } from "@/components/prevNextButtons";
 
 const SearchPage = () => {
@@ -28,9 +27,12 @@ const SearchPage = () => {
     <section className="container mx-auto mt-32">
       <div className="movies-area">
         <div className="movies-title-area">
-          <h1 className="text-lg mb-2 ml-2">Resultados para: <span className="font-bold">{query}</span></h1>
+          <h1 className="text-lg mx-2 my-10">Resultados para: <span className="font-bold">{query}</span></h1>
         </div>
-        {isLoading && <p>Carregando...</p>}
+        {isLoading && <div className="w-full h-full min-h-screen flex justify-center items-center"><Loading /></div>}
+        {movies.length === 0 || !movies &&
+          <div className="my-10">Nenhum filme foi encontrado.</div>
+        }
         <MoviesList movies={movies} isLoading={false} />
         {movies.length >= 20 &&
           <PrevNextButtons page={page} setPage={setPage} />
