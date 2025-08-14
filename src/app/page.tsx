@@ -5,6 +5,7 @@ import { useMovies, useNowPlaying, useTopRatedMovies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { AllMovies } from "@/components/layout/allMovies";
 import { MovieList } from "@/components/layout/movieList";
+import Cookies from "js-cookie";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -20,19 +21,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const savedPage = localStorage.getItem('page');
-    if (savedPage) {
+    const savedPage = Cookies.get("pages");
+    if(savedPage){
       setPage(parseInt(savedPage, 10));
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-
-    if (movies) {
-      localStorage.setItem('page', page.toString());
-      setIsLoading(false);
+    if(movies){
+      Cookies.set("page", page.toString(), { expires: 1 / 288 }) // 5 minutos
     }
-  }, [movies]);
+     setIsLoading(false);
+  }, [page, movies]);
 
   return (
     <main>
